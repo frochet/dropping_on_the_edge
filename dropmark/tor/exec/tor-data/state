@@ -1,0 +1,42 @@
+# Tor state file last generated on 2016-04-08 19:07:56 local time
+# Other times below are in UTC
+# You *do not* need to edit this file.
+
+TorVersion Tor 0.2.7.6 (git-c4c4dd6ff7795c3f)
+LastWritten 2016-04-08 17:07:56
+TotalBuildTimes 233
+CircuitBuildTimeBin 25 1
+CircuitBuildTimeBin 75 29
+CircuitBuildTimeBin 125 44
+CircuitBuildTimeBin 175 36
+CircuitBuildTimeBin 225 26
+CircuitBuildTimeBin 275 17
+CircuitBuildTimeBin 325 8
+CircuitBuildTimeBin 375 9
+CircuitBuildTimeBin 425 10
+CircuitBuildTimeBin 475 7
+CircuitBuildTimeBin 525 8
+CircuitBuildTimeBin 575 3
+CircuitBuildTimeBin 625 3
+CircuitBuildTimeBin 675 2
+CircuitBuildTimeBin 725 2
+CircuitBuildTimeBin 825 1
+CircuitBuildTimeBin 875 1
+CircuitBuildTimeBin 925 6
+CircuitBuildTimeBin 1025 1
+CircuitBuildTimeBin 1075 3
+CircuitBuildTimeBin 1125 1
+CircuitBuildTimeBin 1175 2
+CircuitBuildTimeBin 1225 1
+CircuitBuildTimeBin 1425 1
+CircuitBuildTimeBin 1525 1
+CircuitBuildTimeBin 1625 1
+CircuitBuildTimeBin 1775 1
+CircuitBuildTimeBin 1925 1
+CircuitBuildTimeBin 2175 1
+CircuitBuildTimeBin 2325 1
+CircuitBuildTimeBin 2375 1
+CircuitBuildTimeBin 3125 1
+CircuitBuildTimeBin 3175 1
+CircuitBuildTimeBin 3625 1
+CircuitBuildTimeBin 4275 1
