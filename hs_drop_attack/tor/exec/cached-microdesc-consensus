@@ -1,0 +1,361 @@
+network-status-version 3 microdesc
+vote-status consensus
+consensus-method 21
+valid-after 2017-09-07 11:25:40
+fresh-until 2017-09-07 11:25:50
+valid-until 2017-09-07 11:26:00
+voting-delay 2 2
+client-versions 
+server-versions 
+known-flags Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+dir-source test003a 0304E3F335499625DCBEA8CC740B3CA5F0713323 127.0.0.1 127.0.0.1 7003 5003
+contact auth3@test.test
+vote-digest 644FA4357839FA94613370C57EFBE2381D80286C
+dir-source test000a 083586388F255F4745475269731F245B0E8DA399 127.0.0.1 127.0.0.1 7000 5000
+contact auth0@test.test
+vote-digest EFC2EE6ED8F98F1009EDEEF5FA8ACDD292C075F4
+dir-source test002a 523CF50B0FEDE1ED8D6D42A2C3E28DAE81B3914E 127.0.0.1 127.0.0.1 7002 5002
+contact auth2@test.test
+vote-digest 2AC14922E3842703AAE1431C71A459A8D0B3164E
+dir-source test001a AE4166611F4F1BF08E45E072722AFAFF8C7A49F4 127.0.0.1 127.0.0.1 7001 5001
+contact auth1@test.test
+vote-digest ABB9A560DC42A6827A0A70B9DDD10769DA087DC9
+dir-source test004a D9639BAE19C3BC96CA6CC49D3611F4B0ADAC0157 127.0.0.1 127.0.0.1 7004 5004
+contact auth4@test.test
+vote-digest 1836EEC5CD7E78DC0767314E6E4A757600875906
+r test036r CW22p6r81ZRmKfYOElFvJmruauY 2017-09-07 10:11:47 127.0.0.1 5036 7036
+m d3ghdE+tk1Gdn+gkR1T+YtZGFlUnfxOS9lAJhdx7dnQ
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test045r DIgXio5YRKc+O+kkrh2I7RPVfoI 2017-09-07 10:11:48 127.0.0.1 5045 7045
+m EBiFJMWvsvM1XTuT1cKhDkIsHvFFTVpNCHk320qsFvU
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test053r EXxCPya7FGWxhvN5zhOmFwUTyyY 2017-09-07 10:11:49 127.0.0.1 5053 7053
+m CCpMeFc7K88AKmhZlEiy4kdN6ZZTCXD0H0CKURzDNjE
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test015r Gkr2DRzu1lhS44sYyGvfMb2FuQ4 2017-09-07 10:11:45 127.0.0.1 5015 7015
+m QUdroCf9568sLymAUAvearZodafA/9XlDzbT0P5muY0
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test054r IFYZUbzn3E/z9npnBfl8LN+gYi4 2017-09-07 10:11:49 127.0.0.1 5054 7054
+m OgwiJXhf3guF05TSuK48ynPYO77LOfP2P8dB4oaNozc
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test048r IHLVeNYelnqT3OER/+80JCcF1c4 2017-09-07 10:11:49 127.0.0.1 5048 7048
+m pWlRybrNwLLj3C/76NXZsDK8ZxClTUqioUCKE4uAk6w
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test017r IcrUVjFg2oHt/VKSrnzbCH3Y8+0 2017-09-07 10:11:45 127.0.0.1 5017 7017
+m DdwjoTfZ7CbiSbQSZlXNmm4urKS44jAeJ6WkSA6RLPY
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test002a Kix3vvnJ4Fi5dV+pi5begAa8M74 2017-09-07 10:11:56 127.0.0.1 5002 7002
+m YiX2XCx7G1NamreVyEH21IwoR15ZeChTCUtXVKE6mPg
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test042r K6SovOEm1F/NhcwYjIuw/AoKIK8 2017-09-07 10:11:48 127.0.0.1 5042 7042
+m MalUJSRdc5G+fCIc4vRe3/U6BvUCCzx1DWKU5ClaVGU
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test008r Lz0uAVxMX4kvScGCzkGGaIR7u8E 2017-09-07 10:11:45 127.0.0.1 5008 7008
+m VTJL5c99ulA2rHGYpSQ/zNn/uo4itsCnFhHSbJC4IGw
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test024r MrFl5niM6BY2apBcuY9RVs1Wt1w 2017-09-07 10:11:46 127.0.0.1 5024 7024
+m /GjxE7MMlvXUwNNztVIFRw6w2VluZOfEcp2jrXpuFEU
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test013r NaCtTUNKF2WcqpDMbXCuHlYOPpM 2017-09-07 10:11:45 127.0.0.1 5013 7013
+m p42WrG5KgMje28cqZhOJmQavgDsrqCWf2NqXJy6y62g
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test057r OWX2br/PeYGPjFDa+f14zm6Ov1Y 2017-09-07 10:11:50 127.0.0.1 5057 7057
+m TC2E58Y74r43RWxweZtQA4c609TvHvEUs3/jwgz6u7k
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test029r QzyV4CYitj0RMmd8rJ0p3G3xZm8 2017-09-07 10:11:47 127.0.0.1 5029 7029
+m NdNqRrFVnS++yCtduwgJv/O9cJWfZsHLR+lSpVm3BIw
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test041r RupQLyefCCt+onD68bflFwV8i6E 2017-09-07 10:11:48 127.0.0.1 5041 7041
+m +5EiwZ6UYY+zuA2xsb+qKF0WB2Iz5jVlJsX5akQTV60
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test035r SGGG6jUcxGMY0Eem3Xol0cQ10BY 2017-09-07 10:11:47 127.0.0.1 5035 7035
+m F4+IilJE33CwLrwLslzf1SY9Q7MSo9D9gBBIjbsYlaU
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test052r VpjU13M7DvigQrhKHtnRGBhR9MM 2017-09-07 10:11:49 127.0.0.1 5052 7052
+m GRhB5xXx8aoTYzn6U8lSSc4fKjKa431OI4xDLN4iMmM
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test039r XRUJArj22SOWlrySTtpj3ZrnH3A 2017-09-07 10:11:47 127.0.0.1 5039 7039
+m 9m6sgrjfkEEwqkdL+rSQPOGMA9iKqd2KT5LfEUnzK5E
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test014r Yvb7tfprbbGA0Tqu3avUEBV5RFI 2017-09-07 10:11:45 127.0.0.1 5014 7014
+m igunI6w7/FqAvYsUGTUr3B+O8gQ4QSH+1c/L43wYRJk
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test025r Yzza0PzaUf+m13uy2FnykrKLa5U 2017-09-07 10:11:46 127.0.0.1 5025 7025
+m 0oEkLQpWX/JXAGB0T1i9S+61dwsrBWJ6F/xo4DmB5nA
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test032r Zf52+kz3HAE3njKl9rc+fhp9evI 2017-09-07 10:11:47 127.0.0.1 5032 7032
+m OI69JHpFgFPwijnRqk+F0XsmkG02bfq8AMYX+ynvPcc
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test038r ZoO4yM9Ujgj0BgEJemcaKt55x+8 2017-09-07 10:11:47 127.0.0.1 5038 7038
+m ugSqIk6lX9EOQItdGvUZhczc7QbU5E1GdRcOzevRp5M
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test020r Zo42DH/63/bpTqL3pSQ6LqwV/VI 2017-09-07 10:11:46 127.0.0.1 5020 7020
+m vKjW+Q318f0J2D//7rEo2VStx9ONRpJYxPImKwF8s0E
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test018r aYJAtK7bVkEsmZkxlwWLpaWA7mo 2017-09-07 10:11:45 127.0.0.1 5018 7018
+m PfLX6nyAOuMC0RXe85OqatYJm2fZIDhmajWex4P7GBg
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test055r bCYBR1KYxUIm5lnUo2EfDFYVLrA 2017-09-07 10:11:50 127.0.0.1 5055 7055
+m tFdRG9KN+bMQpYx2fBoYHAUMZ+y2qpvVByJixW7eQF8
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test009r bcnH24mCmsNGB6PleuvXhWZUvlA 2017-09-07 10:11:45 127.0.0.1 5009 7009
+m M6NwAnSCg6nqx2QvgIqPaGT+1RC+33FDifJ1Mzfo24Q
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test011r b/kbD/aKB25kzIwoAGrB9bXvPVw 2017-09-07 10:11:45 127.0.0.1 5011 7011
+m oKxfaX4K8phLMF7BZpGpEY7LjjbQ1Rw8TAfMfbwwuyc
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test028r fquek5KVHhEszq4uJQgIriyejdc 2017-09-07 10:11:46 127.0.0.1 5028 7028
+m NlrvveXJWbt0fn18733eP97LZ1NVD11IsDKmlMmnfps
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test056r gOvfDb6E+rzFDt2u92lAZnVhdXw 2017-09-07 10:11:50 127.0.0.1 5056 7056
+m yPzCE9sD2U476BZ9vp5ad23kpWigXLjKedlS9CTutPY
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test030r iVQGwOl4Y0hUtmJj4zCUEHQpt5c 2017-09-07 10:11:47 127.0.0.1 5030 7030
+m 2cF2IbsBjXTJ7ZR1HeSBt5r5dqarTQHk/vWTHFZayN8
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test050r j22QIAkGsdLXLgoeT9hi8t4W8UY 2017-09-07 10:11:49 127.0.0.1 5050 7050
+m 1iqqp4tiDGcNR3pwMp3lucxL99Y62+8HqRQAlzOpJ0A
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test043r kSLRP/mk3+Ecu2FSaItARsQ5EVU 2017-09-07 10:11:48 127.0.0.1 5043 7043
+m pqtxTPMgIODtCoxB5VvpREYImi9e88UFryYvVXguIiM
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test047r kTnQar7HCpElo2Y5QWca7fIXPwM 2017-09-07 10:11:49 127.0.0.1 5047 7047
+m t6nIMphbzZ4Xm2Wpof4Zu0/kERmtHQD59iTsgQ9feTI
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test005r kyVsnGaUhVCHBMPsk617JQAUJ+w 2017-09-07 10:11:44 127.0.0.1 5005 7005
+m rtT8Gjlaavn/p43Otysn1nK10rPt1tOGrYtXoQEYwWU
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test001a lF9IL6K4GZQ/qI1JX8aaKLwp9Og 2017-09-07 10:14:15 127.0.0.1 5001 7001
+m ev9FPO3RjPwP5C4kA1bIePRi4LogD08MYz6xqlLBUwk
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test051r oeWzp9XnzqH2RpDKJfgVoL6xyWo 2017-09-07 10:11:49 127.0.0.1 5051 7051
+m evml+EH+bJVEgJV9ShBdXvZ+yNsHtC+HX2v6ELxV+pA
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test023r pUrdoDRvC/vMaJPkmHJ4JzG+nl0 2017-09-07 10:11:46 127.0.0.1 5023 7023
+m 9wZ1VSiKsAkgOkhs1mh0U7c4d6vNySm2Yay9sftS3qs
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test012r pW/ayniXqvDKCSrHwxJUyKHBhDg 2017-09-07 10:11:45 127.0.0.1 5012 7012
+m s3+Z16Uz7Puv4DT/aCzf5E761q1Vn6y67jCAN+p+ppM
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test034r qF4h2CgXx5InzyOOjDNUovcbT3I 2017-09-07 10:11:47 127.0.0.1 5034 7034
+m eKzXKj//FlltmgCF/jqTGsSqLNMSapzamqR4kwHuHnM
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test044r sFw/p6DJClPpWKMlBn87uqVLN+g 2017-09-07 10:11:48 127.0.0.1 5044 7044
+m /MWsYueTX+zR3ginu5EfdAZ5X+5+RRh5jHzm3BPWb7Y
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test022r s2F2c7iGhW6OssXu0DjicMe9xII 2017-09-07 10:11:46 127.0.0.1 5022 7022
+m gueL0oIpSk+GHIT5PcbVVeWNuYtct/aKCIlVf0RuB/k
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test006r uAQ6rOvwRQp1zH3+jifm0N6V7pU 2017-09-07 10:11:44 127.0.0.1 5006 7006
+m 25NwDb369RNt65SfcHgTHoSQIQ5u+YYdMDhOAtB/rm4
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test010r ue/f3v7slKiZcX91yns8RLPGkic 2017-09-07 10:11:45 127.0.0.1 5010 7010
+m zVW0HZoxHNQT2LjAlvLXAONtr0tW6Uc2aabeXOKQoY0
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test046r wzUjY59Bdz6uMO/La7FeLpYtaW4 2017-09-07 10:11:49 127.0.0.1 5046 7046
+m YDSjut+b1F8XbE+PCqCxvReOsgnqkwZUK5LV86CH1gA
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test007r xG3pk87jnaoKL3JzFLlo9SG4NJ8 2017-09-07 10:11:44 127.0.0.1 5007 7007
+m L/JBakYJ/cjVF03IgRaS6oRpBZmWG4z9L7iLDJxVKO0
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test004a yNe/VvlTtqfmxJ/QN42ULkjUz+0 2017-09-07 10:32:27 127.0.0.1 5004 7004
+m LJ6TSGf9y5alne7ZKAj1FduO7ucmYri1ClnjJ8SJFP0
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test021r 08H35asHOimGTUpBC2ZyE2TsxDY 2017-09-07 10:11:46 127.0.0.1 5021 7021
+m 6ZmHyvhjmOhJAIChDZdpzjsRAsFy8Bw7d6eX9wE20ec
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test049r 3OLXMmFTgdko0F8iTYVRZRjgBzg 2017-09-07 10:11:49 127.0.0.1 5049 7049
+m 1CDCX9uqtO7IomCDj3MOzehC2syP5zZISlCFSWFCZwU
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test016r 3RoPmrFZTz4IGWuYYT6ewzrF1Rk 2017-09-07 10:11:45 127.0.0.1 5016 7016
+m trUopojvU4maMGnn6b8bZUbQr9IOzZzOgZoZ5fn29IM
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test027r 5TKbrr0S3TuET7tHB4LbKNQV/Pg 2017-09-07 10:11:46 127.0.0.1 5027 7027
+m QJMf1+fMpXKoscx6nOlimxCpXALYCjS4DoLxLZ0xfGo
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test031r 8ktIAlqNeu9FdILb4JztbZzs58c 2017-09-07 10:11:47 127.0.0.1 5031 7031
+m I2ztB/iHEGSdltX9SYI1nTe+7FZ1i5b8oeaZOBZ7vDs
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test000a 8ssJDbK4qyoFSG8PgpIyqdfvbuM 2017-09-07 10:33:36 127.0.0.1 5000 7000
+m BHFkLqO+FKWCWTwyJVN6YC4sSHFTM7ARWFWQ4wBdT9g
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test026r 9pwDdL/W+Ev4urNAnxZapy01keA 2017-09-07 10:11:46 127.0.0.1 5026 7026
+m mDgxiTdgi/rBY1QLiQ1ovKKjb479iOUfmIws0q/lBdo
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test040r +K1jwFRuVJkagUCnXDEvrSwQ528 2017-09-07 10:11:48 127.0.0.1 5040 7040
+m 1NkfNdAF6t9bxcfUuIjwsjYNkl2H8OmgzQSfGOFYYZw
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test037r +dDIihfe0sgxsjhh5JJUSo4SQrk 2017-09-07 10:11:47 127.0.0.1 5037 7037
+m HHH4hQ6pBsg3fs7uT58BoBelNX6gQMmjRr4+Dy4HTCk
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test019r +sV30rU4ST0FkgO6Cx6MygQIpHw 2017-09-07 10:11:46 127.0.0.1 5019 7019
+m uaWgpYY7r33FYP3y8XdN2VfnFfbL/ZwG6Zk1rxQcqmA
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test033r /K9URTA1mIf5Xnx64pnCz+mXayk 2017-09-07 10:11:47 127.0.0.1 5033 7033
+m nZX5kr+vrPx8bL35xcA14UwBpkQAjg3vLe5PuwxzFUY
+s Exit Fast Guard HSDir Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r test003a /P7YyuARrwE+kAxbphoAPOXw0BI 2017-09-07 10:11:50 127.0.0.1 5003 7003
+m 0rIQeEbDYa2efVAMCjkBv8OPHFQKzqMz27fytZSqP5s
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+directory-footer
+directory-signature sha256 0304E3F335499625DCBEA8CC740B3CA5F0713323 541A0132724448DDC024C461B89718143A9B37AD
+-----BEGIN SIGNATURE-----
+XeMieqaIlI1zQFw2zs1pO00F1zcRVzZS5yPO1X+u9b2DSRD3XcPiwlFzJvzTU+BA
+5U/nvYSZ5n1JaXPFX4nsUKqn0k/JI1kCIRMBG/B4vNF6VeHGjL0xXe9zCpncRVzc
+1X6VVdMvHX6rZo7F+ndnbXxZ1JdeJAkg6ylV6ymBi/fwCfbokm7g9zs6SLrsd2Fn
+YxPq7O93fAVFiuQwdAhkkT1ElZvt/9K4scWyY2m6LIEBlxuNikzIclfmoa1WKlii
+v0aZNOj/7ggvNxjX1Qf5Wqo01yCk0YTI7zLXY9+1f/m57rG/Ec67don59r7cddVz
+T0G7Pmr/NyDBBpYJYMXTHg==
+-----END SIGNATURE-----
+directory-signature sha256 083586388F255F4745475269731F245B0E8DA399 B539F651235F3CB9A68CA487F69A66B2650636A5
+-----BEGIN SIGNATURE-----
+t+Rib6N+SHKp+jRASwvUNSTVroX/BRjJbMR6EhePNGjzI287NUJ+6hUtl85TSG5R
+YxxWaFCyOgk4ojGviC9YPqhElXNekklgkdi4jcm3xh/8Dgwil3rpBaKrqmKBwWM2
+zy2jNStBQJTTxrsoLmCnsEDj736JcuOPdhmibfZfF9eAFsBF4WCsdpCAYyIE9sr1
+lSkMoJcS0d9YHXJYtRt57Mzfheg1xw6RS/+YqaQf5S6NA3SviMjbla4Z/79hDtlT
+CHBH8Mn9JUsTplXwRNdCQeoRt50ExtEjVw7shH3dd2nNk/dQrpBXlRi/vZKK7bKT
++03qPsURNlaa4DIpFiyJDg==
+-----END SIGNATURE-----
+directory-signature sha256 523CF50B0FEDE1ED8D6D42A2C3E28DAE81B3914E FB517374ECA19E5C2B0CD036CA078FF87CFE0627
+-----BEGIN SIGNATURE-----
+Xf23Q2+8B6nC0peDbyT18pzG4L382H8vl69bTjJOg5JRifk9KeM+4+RcEfhh0g5j
+GEquLlsXAttoSVul5nO7tqqJTT3/PReBgG/5ImYiaqR8bTotqPq0HOT/z0eiG4gk
+1T3diQT2/RH62YCq3IVil4Uz0yavIKjsH1jz+se0YusnJtmj2kpkRMglbjJPTI06
+PLfTMJQgtJiUfMoj0e1056ybw3UlqHxFTn54j0+fDrPLOyCDKXXJkbyz36dQpMGd
+aGZ42kBrnJpxZV46RLll3k2oEE1bPXzM48PAUtSuhxZvLO7Rrh/6uD73BbiCWWun
+dRv011S8PebMLsAh15e8BQ==
+-----END SIGNATURE-----
+directory-signature sha256 AE4166611F4F1BF08E45E072722AFAFF8C7A49F4 9E9C0A83CFA3C201F2C7B1F518DB96F514D8927A
+-----BEGIN SIGNATURE-----
+zVp02JMiqgoR5alJerh/K/gxb4+qhhm00UhOGCDBEkDbqlxmgA2/GylZJfZnadnT
+rKkITa/ISd38IAPqa5rK7zu4+ssGgFWqC6L3n9WIJGhUCYPplqFg6zwfq5W7sxxq
+BfV/1UYnRkUBZlrRdvQuUhCQGGCqDnTOhiqJ/HjHrLAWhLHykOHIn82o59XllLEC
+TRBMyX2tRxvounKRTc5sbKmD4K/ViYI1IExMdGXuivyCyrBpEIssIWf4bsfapgYk
+Fi8XduxLBAOkJt2qR5q0a8BcUd7hAe9ps3tLIwrapzyXu2ByoFeL2Bo/vnpMZ6RD
+2i15otE4zbqlG9UMUNN9iA==
+-----END SIGNATURE-----
+directory-signature sha256 D9639BAE19C3BC96CA6CC49D3611F4B0ADAC0157 D421AB52EE52BE995BDC15D4911C23BBA45C4338
+-----BEGIN SIGNATURE-----
+iThRU6bg3h6pd5fbgsnIPHU0b8rCRj0hI89zZuOVJd0s496UfsGZ3G51UkW/C8+T
+1qAPoz2wokiBvblnWZMASvIKrMJeKkNxCQvGyahC1zwYAUW5KYVxxf2cQF5XYSxu
+HX6QnwF+3gGewbzGdLZHhQXEPhS9CsxHb920WR4n0rPa0LSJ6nIamXWKifse+qvg
+hQfXuSQrv3qcCAP0rWlvIT9TLfqIfm1F75UDqNTbWtNCLIBzXh0od6rlV/MrDngR
+PLEHJcTmQ3N/x/wZ5onn+EUswfG8anMONWKoZjDUwJIwti69IW1xLuzCnpuprhLB
+6OodptQ/VNNpAjgCXb1gog==
+-----END SIGNATURE-----
