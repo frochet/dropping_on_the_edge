@@ -1,0 +1,7 @@
+*.orig
+*.swp
+*pyc
+*pyd
+*~
+
+/net/[^.]*

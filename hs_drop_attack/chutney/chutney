@@ -1,0 +1,55 @@
+#!/bin/sh
+
+set -o errexit
+set -o nounset
+
+export PYTHONPATH="$(dirname "${0}")/lib:$(dirname "${0}")/scripts:${PYTHONPATH-}"
+# make a last-ditch effort to set CHUTNEY_PATH based on this script's location
+if ! test "${CHUTNEY_PATH+y}"
+then
+    export CHUTNEY_PATH="`dirname $0`"
+fi
+
+binaries="python2 python"
+
+if ! test "${PYTHON+y}"
+then
+    saved_IFS="${IFS}"
+    for binary in ${binaries}
+    do
+        IFS=":"
+        for directory in ${PATH}
+        do
+            case "${directory}" in
+                "") directory="./"
+                    ;;
+                */)
+                    ;;
+                *) directory="${directory}/"
+                    ;;
+            esac
+            abs_path="${directory}${binary}"
+            if test -f "${abs_path}" && test -x "${abs_path}"
+            then
+                PYTHON="${abs_path}"
+                break
+            fi
+        done
+
+        if test "${PYTHON+y}"
+        then
+            break
+        fi
+    done
+    IFS="${saved_IFS}"
+fi
+
+if ! test "${PYTHON+y}"
+then
+    printf "No compatible Python version found.\n" >&2
+    printf "Is Python installed and in your PATH?\n" >&2
+    exit 1
+fi
+
+printf "Using %s\n" "$("${PYTHON}" --version 2>&1)"
+"${PYTHON}" -m chutney.TorNet "${@}"

@@ -1,0 +1,175 @@
+This is chutney.  It doesn't do much so far.  It isn't ready for prime-time.
+
+If it breaks, you get to keep all the pieces.
+
+It is supposed to be a good tool for:
+  - Configuring a testing tor network
+  - Launching and monitoring a testing tor network
+  - Running tests on a testing tor network
+
+Right now it only sorta does these things.
+
+You will need, at the moment:
+  - Tor installed somewhere in your path, or
+  - The location of the 'tor' and 'tor-gencert' binaries specified through the
+    environment variables CHUTNEY_TOR and CHUTNEY_TOR_GENCERT, respectively, or
+  - To run chutney's tools/test-network.sh from a tor build directory, and
+  - Python 2.7 or later (Python 3 support is an ongoing work)
+
+Stuff to try:
+
+Automated Setup, Verification, and Shutdown:
+  ./tools/test-network.sh --flavor basic-min
+  ./tools/test-network.sh --coverage
+  ./tools/test-network.sh --tor-path <tor-build-directory>
+  ./tools/test-network.sh --tor <name-or-path> --tor-gencert <name-or-path>
+  (--tor-path and $TOR_DIR override --tor and --tor-gencert.)
+  (The script tries hard to find tor.)
+  ./tools/test-network.sh --chutney-path <chutney-directory>
+  (The script is pretty good at finding chutney.)
+
+test-network.sh looks for some tor binaries (either in a nearby build
+directory or in your $PATH), configures a comprehensive tor test network,
+launches it, then verifies data transmission through it, and cleans up after
+itself. Relative paths are supported.
+
+You can modify its configuration using command-line arguments, or use the
+chutney environmental variables documented below:
+
+Timing Options:
+  --start-time       CHUTNEY_START_TIME
+  --bootstrap-time   CHUTNEY_BOOTSTRAP_TIME
+  --stop-time        CHUTNEY_STOP_TIME
+
+Traffic Options:
+  --data             CHUTNEY_DATA_BYTES=N
+  # connections are simultaneous, rounds are sequential
+  --connections      CHUTNEY_CONNECTIONS=N
+  --rounds           CHUTNEY_ROUNDS=N
+  --hs-multi-client  CHUTNEY_HS_MULTI_CLIENT=N
+
+Address Options:
+  --ipv4             CHUTNEY_LISTEN_ADDRESS
+  --ipv6             CHUTNEY_LISTEN_ADDRESS_V6
+
+Warning Options:
+  --all-warnings     CHUTNEY_WARNINGS_IGNORE_EXPECTED=false
+                     CHUTNEY_WARNINGS_SUMMARY=false
+  --no-warnings      CHUTNEY_WARNINGS_SKIP=true
+  --only-warnings    CHUTNEY_WARNINGS_ONLY=true
+
+Expert Options:
+  --debug            CHUTNEY_DEBUG=true
+  --coverage         USE_COVERAGE_BINARY=true
+  --dry-run          NETWORK_DRY_RUN=true
+  --quiet            ECHO=true
+
+  --controlling-pid  CHUTNEY_CONTROLLING_PID
+  --net-dir          CHUTNEY_DATA_DIR
+  (These are advanced options: in the past, they have had long-standing bugs.)
+
+Standard Actions:
+  ./chutney configure networks/basic
+  ./chutney start networks/basic
+  ./chutney status networks/basic
+  ./chutney verify networks/basic
+  ./chutney hup networks/basic
+  ./chutney stop networks/basic
+
+Bandwidth Tests:
+  ./chutney configure networks/basic-min
+  ./chutney start networks/basic-min
+  ./chutney status networks/basic-min
+  CHUTNEY_DATA_BYTES=104857600 ./chutney verify networks/basic-min
+  # Send 100MB of data per client connection
+  # verify produces performance figures for:
+  # Single Stream Bandwidth: the speed of the slowest stream, end-to-end
+  # Overall tor Bandwidth: the sum of the bandwidth across each tor instance
+  # This approximates the CPU-bound tor performance on the current machine,
+  # assuming everything is multithreaded and network performance is infinite.
+  ./chutney stop networks/basic-min
+
+Connection Tests:
+  ./chutney configure networks/basic-025
+  ./chutney start networks/basic-025
+  ./chutney status networks/basic-025
+  # Make 5 simultaneous connections from each client through a random exit
+  CHUTNEY_CONNECTIONS=5 ./chutney verify networks/basic-025
+  ./chutney stop networks/basic-025
+
+  # Run 5 sequential verification rounds
+  CHUTNEY_ROUNDS=5 ./tools/test-network.sh --flavour basic
+
+Note: If you create 7 or more connections to a hidden service from a single
+Tor 0.2.7 client, you'll likely get a verification failure due to #15937.
+This is fixed in 0.2.8.
+
+HS Connection Tests:
+  ./chutney configure networks/hs-025
+  ./chutney start networks/hs-025
+  ./chutney status networks/hs-025
+  CHUTNEY_HS_MULTI_CLIENT=1 ./chutney verify networks/hs-025
+  # Make a connection from each client to each hs
+  # Default behavior is one client connects to each HS
+  ./chutney stop networks/hs-025
+
+Waiting for the network:
+
+  The tools/test-network.sh script waits CHUTNEY_START_TIME seconds
+  (default: 20) before calling chutney verify, because that's the minimum
+  amount of time it takes to bootstrap a consensus containing relays.
+  (It takes 5-10 seconds for the authorities to create the first consensus,
+  then 10 seconds for relays to bootstrap, submit their descriptors, and be
+  included in the next consensus.) If CHUTNEY_START_TIME is negative, the
+  script leaves the network running, and exits immediately (without verifying).
+
+  Commands like "chutney verify" start immediately, and keep trying for
+  CHUTNEY_BOOTSTRAP_TIME seconds (default: 60). If it hasn't been
+  successful after that time, it fails. If CHUTNEY_BOOTSTRAP_TIME is negative,
+  the script leaves the network running, and exits after CHUTNEY_START_TIME
+  (without verifying).
+
+  The tools/test-network.sh script waits CHUTNEY_STOP_TIME seconds
+  after verifying, then exits (default: immediately). If CHUTNEY_STOP_TIME is
+  negative, the script leaves the network running, and exits after verifying.
+
+  If none of these options are negative, test-network.sh tells the tor
+  processes to exit after it exits, using CHUTNEY_CONTROLLING_PID. To disable
+  this functionality, set CHUTNEY_CONTROLLING_PID to 1 or less.
+
+Changing the network address:
+
+   Chutney defaults to binding to localhost. To change the IPv4 bind address,
+   set the CHUTNEY_LISTEN_ADDRESS environment variable. Similarly, change
+   CHUTNEY_LISTEN_ADDRESS_V6 for IPv6: it defaults to "no IPv6 address".
+   Setting it to some interface's IP address allows us to make the simulated
+   Tor network available on the network.
+
+   IPv6 support for both Tor and Chutney is a work in progress. Currently,
+   chutney verifies IPv6 client, bridge client (?), hidden service, and exit
+   connections. It does not use IPv6 SOCKSPorts or HiddenServicePorts.
+
+The configuration files:
+  networks/basic holds the configuration for the network you're configuring
+  above.  It refers to some torrc template files in torrc_templates/.
+
+The working files:
+  chutney sticks its working files, including all data directories, log
+  files, etc, in ./net/.  Each tor instance gets a subdirectory of net/nodes.
+
+  You can override the directory "./net" with the CHUTNEY_DATA_DIR
+  environment variable.
+
+Test scripts:
+  The test scripts are stored in the "scripts/chutney_tests" directory. These
+  Python files must define a "run_test(network)" function. Files starting with
+  an underscore ("_") are ignored.
+
+  Test scripts can be run using the following syntax:
+  ./chutney <script-name> networks/<network-name>
+
+  The chutney verify command is implemented using a test script.
+
+  Test scripts in the test directory with the same name as standard commands
+  are run instead of that standard command. This allows expert users to replace
+  the standard chutney commands with modified versions.
