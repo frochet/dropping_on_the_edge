@@ -1,0 +1,26 @@
+DirServer 4uthority1 v3ident=8B43D74B9D5873AA91AD698B32DBAF1A1984D7B8 orport=9111 4uthority1:9112 9CEC 7F79 F0DC D39B 4D98 8E67 F30D F5A9 4593 370C
+DirServer 4uthority2 v3ident=AC54F10AB6393A6C453E415904271A8B95524E9B orport=9111 4uthority2:9112 E2CD B08F D215 6F65 D867 BD3A 112D 8FE3 F3F3 8102
+DirServer 4uthority3 v3ident=A17C681C3D06CEB7948F536B900E655DB4207A1C orport=9111 4uthority3:9112 6F8E 343C 2114 9100 D15C D282 DF5A B473 E2F2 7BE8
+TestingTorNetwork 1
+AllowInvalidNodes "entry,middle,exit,introduction,rendezvous"
+ServerDNSResolvConfFile conf/shadowresolv.conf
+ServerDNSTestAddresses 4uthority1,4uthority2,4uthority3
+ServerDNSAllowBrokenConfig 1
+ServerDNSDetectHijacking 0
+NumCPUs 1
+Log [signal]info stdout
+SafeLogging 0
+WarnUnsafeSocks 0
+ContactInfo shadow-support@cs.umn.edu
+DynamicDHGroups 0
+DisableDebuggerAttachment 0
+CellStatistics 1
+DirReqStatistics 1
+EntryStatistics 1
+ExitPortStatistics 1
+ExtraInfoStatistics 1
+CircuitPriorityHalflife 30
+ControlPort 9051
+SignalMethod 0
+MaxCircuitDirtiness 1
+SignalBlankIntervalMS 200

@@ -1,0 +1,684 @@
+Jan 01 00:15:00.000 [notice] Tor v0.2.7.6 (git-baa46033fdf18165) running on Linux with Libevent 2.0.21-stable, OpenSSL 1.0.1e and Zlib 1.2.8.
+Jan 01 00:15:00.000 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://www.torproject.org/download/download#warning
+Jan 01 00:15:00.000 [notice] Read configuration file "/home/frochet/Tor/tor_hs_localization/exitHeatMap/shadow-plugin-tor/resource/shadowtor-minimal/conf/tor.common.torrc".
+Jan 01 00:15:00.000 [notice] Read configuration file "/home/frochet/Tor/tor_hs_localization/exitHeatMap/shadow-plugin-tor/resource/shadowtor-minimal/conf/tor.client.torrc".
+Jan 01 00:15:00.000 [warn] Skipping obsolete configuration option 'DynamicDHGroups'
+Jan 01 00:15:00.000 [warn] Skipping obsolete configuration option 'DynamicDHGroups'
+Jan 01 00:15:00.000 [warn] Path for DataDirectory (shadow.data/hosts/torhiddenclient) is relative and will resolve to /home/frochet/Tor/tor_hs_localization/exitHeatMap/shadow-plugin-tor/resource/shadowtor-minimal/shadow.data/hosts/torhiddenclient. Is this what you wanted?
+Jan 01 00:15:00.000 [warn] ControlPort is open, but no authentication method has been configured.  This means that any program on your computer can reconfigure your Tor.  That's bad!  You should upgrade your Tor controller as soon as possible.
+Jan 01 00:15:00.000 [warn] You have used DirAuthority or AlternateDirAuthority to specify alternate directory authorities in your configuration. This is potentially dangerous: it can make you look different from all other Tor users, and hurt your anonymity. Even if you've specified the same authorities as Tor uses by default, the defaults could change in the future. Be sure you know what you're doing.
+Jan 01 00:15:00.000 [warn] TestingTorNetwork is set. This will make your node almost unusable in the public Tor network, and is therefore only advised if you are building a testing Tor network!
+Jan 01 00:15:00.000 [notice] Opening Socks listener on 127.0.0.1:9000
+Jan 01 00:15:00.000 [notice] Opening Control listener on 127.0.0.1:9051
+Jan 01 00:15:00.000 [warn] Fixing permissions on directory shadow.data/hosts/torhiddenclient
+Jan 01 00:15:00.000 [warn] Your log may contain sensitive information - you disabled SafeLogging, and you're logging more than "notice". Don't log unless it serves an important reason. Overwrite the log afterwards.
+Jan 01 00:15:00.000 [notice] Not disabling debugger attaching for unprivileged users.
+Jan 01 00:15:00.000 [info] tor_lockfile_t *tor_lockfile_lock(const char *, int, int *): Locking "shadow.data/hosts/torhiddenclient/lock"
+Jan 01 00:15:00.000 [info] int or_state_load(): Initialized state
+Jan 01 00:15:00.000 [info] int circuit_build_times_parse_state(circuit_build_times_t *, or_state_t *): Adding 0 timeouts.
+Jan 01 00:15:00.000 [info] int circuit_build_times_parse_state(circuit_build_times_t *, or_state_t *): Loaded 0/0 values from 0 lines in circuit time histogram
+Jan 01 00:15:00.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/router-stability": No such file or directory
+Jan 01 00:15:00.000 [info] void cell_ewma_set_scale_factor(const or_options_t *, const networkstatus_t *): Enabled cell_ewma algorithm because of value in CircuitPriorityHalflife in configuration; scale factor is 0.793701 per 10 seconds
+Jan 01 00:15:00.000 [notice] Parsing GEOIP IPv4 file /home/frochet/.shadow/share/geoip.
+Jan 01 00:15:00.000 [info] int geoip_load_file(sa_family_t, const char *): Failed to open GEOIP file /usr/local/var/tor/geoip6.  
+Jan 01 00:15:00.000 [warn] Warning from libevent: Added a signal to event base 0x3f2e850 with signals already added to event_base 0x38c8ea0.  Only one can have signals at a time with the epoll (with changelist) backend.  The base with the most recently added signal or the most recent event_base_loop() call gets preference; do not rely on this behavior in future Libevent versions.
+Jan 01 00:15:00.000 [notice] Bootstrapped 0%: Starting
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/cached-certs": No such file or directory
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/cached-consensus": No such file or directory
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/unverified-consensus": No such file or directory
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/cached-microdesc-consensus": No such file or directory
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/unverified-microdesc-consensus": No such file or directory
+Jan 01 00:15:00.000 [info] tor_mmap_t *tor_mmap_file(const char *): Could not open "shadow.data/hosts/torhiddenclient/cached-microdescs" for mmap(): No such file or directory
+Jan 01 00:15:00.000 [info] char *read_file_to_str(const char *, int, struct stat *): Could not open "shadow.data/hosts/torhiddenclient/cached-microdescs.new": No such file or directory
+Jan 01 00:15:00.000 [info] int microdesc_cache_reload(microdesc_cache_t *): Reloaded microdescriptor cache. Found 0 descriptors.
+Jan 01 00:15:00.000 [info] tor_mmap_t *tor_mmap_file(const char *): Could not open "shadow.data/hosts/torhiddenclient/cached-descriptors" for mmap(): No such file or directory
+Jan 01 00:15:00.000 [info] tor_mmap_t *tor_mmap_file(const char *): Could not open "shadow.data/hosts/torhiddenclient/cached-extrainfo" for mmap(): No such file or directory
+Jan 01 00:15:00.000 [info] I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
+Jan 01 00:15:01.000 [info] void update_consensus_networkstatus_downloads(time_t): Launching microdesc networkstatus consensus download.
+Jan 01 00:15:01.000 [info] const routerstatus_t *directory_pick_generic_dirserver(dirinfo_type_t, int, uint8_t): No router found for consensus network-status fetch; falling back to dirserver list.
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): Making internal direct tunnel to 11.0.0.9:9111 ...
+Jan 01 00:15:01.000 [info] int onion_pick_cpath_exit(origin_circuit_t *, extend_info_t *): Using requested exit node '$A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1~A52CA5B56C64D864F6A at 11.0.0.9'
+Jan 01 00:15:01.000 [info] int circuit_handle_first_hop(origin_circuit_t *): Next router is $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1~A52CA5B56C64D864F6A at 11.0.0.9: Not connected. Connecting.
+Jan 01 00:15:01.000 [notice] Bootstrapped 5%: Connecting to directory server
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): ... application connection created and linked.
+Jan 01 00:15:01.000 [info] void directory_send_command(dir_connection_t *, int, int, const char *, const char *, size_t, time_t): Downloading consensus from 11.0.0.9:9111 using /tor/status-vote/current/consensus-microdesc/BA3FDA.z
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [notice] New control connection opened from 127.0.0.1.
+Jan 01 00:15:01.000 [info] int handle_control_authenticate(control_connection_t *, uint32_t, const char *): Authenticated control connection (27)
+Jan 01 00:15:01.000 [notice] Bootstrapped 10%: Finishing handshake with directory server
+Jan 01 00:15:01.000 [info] int connection_tls_continue_handshake(or_connection_t *): Client got a v3 cert!  Moving on to v3 handshake with ciphersuite ECDHE-RSA-AES128-GCM-SHA256
+Jan 01 00:15:01.000 [info] void channel_tls_process_versions_cell(var_cell_t *, channel_tls_t *): Negotiated version 4 with 11.0.0.9:9111; Waiting for CERTS cell
+Jan 01 00:15:01.000 [info] void channel_tls_process_certs_cell(var_cell_t *, channel_tls_t *): Got some good certificates from 11.0.0.9:9111: Authenticated it.
+Jan 01 00:15:01.000 [notice] Bootstrapped 15%: Establishing an encrypted directory connection
+Jan 01 00:15:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '<unnamed>'
+Jan 01 00:15:01.000 [info] void channel_tls_process_netinfo_cell(cell_t *, channel_tls_t *): Got good NETINFO cell from 11.0.0.9:9111; OR connection is now open, using protocol version 4. Its ID digest is A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1. Our address is apparently 11.0.0.2.
+Jan 01 00:15:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:01.000 [info] internal circ (length 1, last hop A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1): $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open)
+Jan 01 00:15:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:01.000 [notice] Bootstrapped 20%: Asking for networkstatus consensus
+Jan 01 00:15:01.000 [info] internal circ (length 1): $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open)
+Jan 01 00:15:01.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to <null> doesn't allow optimistic data for connection to 11.0.0.9
+Jan 01 00:15:01.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 1 on circ 3464791039 to begin stream 2017.
+Jan 01 00:15:01.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket -1, n_circ_id 3464791039
+Jan 01 00:15:01.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 3464791039 streamid 2017 after 0 seconds.
+Jan 01 00:15:01.000 [info] internal circ (length 1): $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open)
+Jan 01 00:15:01.000 [notice] Bootstrapped 25%: Loading networkstatus consensus
+Jan 01 00:15:01.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): -1: end cell (closed normally) for stream 2017. Removing stream.
+Jan 01 00:15:01.000 [info] void connection_free_(connection_t *): Freeing linked Socks connection [open] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:01.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Received consensus directory (size 2072) from server '11.0.0.9:9111'
+Jan 01 00:15:01.000 [info] Looks like we need to download a new certificate from authority '4uthority' at 11.0.0.9:9112 (contact shadow-support@cs.umn.edu; identity BA3FDA7CE3B41FBF9BB3615BE6ACD28D883E694B)
+Jan 01 00:15:01.000 [info] A consensus needs 1 good signatures from recognized authorities for us to accept it. This one has 0 (). We were unable to check 1 of the signatures, because we were missing the keys.
+Jan 01 00:15:01.000 [info] int networkstatus_set_current_consensus(const char *, const char *, unsigned int): Not enough certificates to check networkstatus consensus
+Jan 01 00:15:01.000 [info] void authority_certs_fetch_missing(networkstatus_t *, time_t): No current certificate known for authority 4uthority (ID digest BA3FDA7CE3B41FBF9BB3615BE6ACD28D883E694B); launching request.
+Jan 01 00:15:01.000 [info] const routerstatus_t *directory_pick_generic_dirserver(dirinfo_type_t, int, uint8_t): No router found for authority cert fetch; falling back to dirserver list.
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): Making internal direct tunnel to 11.0.0.9:9111 ...
+Jan 01 00:15:01.000 [info] internal circ (length 1): $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open)
+Jan 01 00:15:01.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to <null> doesn't allow optimistic data for connection to 11.0.0.9
+Jan 01 00:15:01.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 1 on circ 3464791039 to begin stream 2018.
+Jan 01 00:15:01.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket -1, n_circ_id 3464791039
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): ... application connection created and linked.
+Jan 01 00:15:01.000 [notice] I learned some more directory information, but not enough to build a circuit: We have no usable consensus.
+Jan 01 00:15:01.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Successfully loaded consensus.
+Jan 01 00:15:01.000 [info] void connection_free_(connection_t *): Freeing linked Directory connection [client finished] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 3464791039 streamid 2018 after 0 seconds.
+Jan 01 00:15:01.000 [info] internal circ (length 1): $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open)
+Jan 01 00:15:01.000 [notice] Bootstrapped 40%: Loading authority key certs
+Jan 01 00:15:01.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): -1: end cell (closed normally) for stream 2018. Removing stream.
+Jan 01 00:15:01.000 [info] void connection_free_(connection_t *): Freeing linked Socks connection [open] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:01.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Received authority certificates (size 1883) from server '11.0.0.9:9111'
+Jan 01 00:15:01.000 [info] int trusted_dirs_load_certs_from_string(const char *, int, int): Adding downloaded certificate for directory authority 4uthority with signing key B6B52D36DA47A014B5CF65A55EDC62C93523DCC3
+Jan 01 00:15:01.000 [info] A consensus needs 1 good signatures from recognized authorities for us to accept it. This one has 1 (4uthority).
+Jan 01 00:15:01.000 [info] A consensus needs 1 good signatures from recognized authorities for us to accept it. This one has 1 (4uthority).
+Jan 01 00:15:01.000 [info] void update_consensus_networkstatus_fetch_time_impl(time_t, int): Live microdesc consensus will be the most recent until 1970-01-01 00:20:00 and will expire at 1970-01-01 00:30:00; fetching the next one at 1970-01-01 00:28:20.
+Jan 01 00:15:01.000 [info] void cell_ewma_set_scale_factor(const or_options_t *, const networkstatus_t *): Enabled cell_ewma algorithm because of value in CircuitPriorityHalflife in configuration; scale factor is 0.793701 per 10 seconds
+Jan 01 00:15:01.000 [notice] Bootstrapped 45%: Asking for relay descriptors
+Jan 01 00:15:01.000 [notice] I learned some more directory information, but not enough to build a circuit: We need more microdescriptors: we have 0/5, and can only build 0% of likely paths. (We have 0% of guards bw, 0% of midpoint bw, and 0% of exit bw = 0% of path bw.)
+Jan 01 00:15:01.000 [info] void launch_descriptor_downloads(int, smartlist_t *, const routerstatus_t *, time_t): There are not many downloadable microdescs, but we haven't tried downloading descriptors recently. Downloading.
+Jan 01 00:15:01.000 [info] void launch_descriptor_downloads(int, smartlist_t *, const routerstatus_t *, time_t): Launching 2 requests for 5 microdescs, 4 at a time
+Jan 01 00:15:01.000 [info] const node_t *add_an_entry_guard(const node_t *, int, int, int, int): Chose $FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6 as new entry guard.
+Jan 01 00:15:01.000 [info] void log_entry_guards(int): relay2 [FF197204099FA0E507FA46D41FED97D3337B4BAA] (up made-contact)
+Jan 01 00:15:01.000 [info] const node_t *add_an_entry_guard(const node_t *, int, int, int, int): Chose $4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8 as new entry guard.
+Jan 01 00:15:01.000 [info] void log_entry_guards(int): relay2 [FF197204099FA0E507FA46D41FED97D3337B4BAA] (up made-contact),exit2 [4EBB385C80A2CA5D671E16F1C722FBFB5F176891] (up made-contact)
+Jan 01 00:15:01.000 [info] const node_t *add_an_entry_guard(const node_t *, int, int, int, int): Chose $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7 as new entry guard.
+Jan 01 00:15:01.000 [info] void log_entry_guards(int): relay2 [FF197204099FA0E507FA46D41FED97D3337B4BAA] (up made-contact),exit2 [4EBB385C80A2CA5D671E16F1C722FBFB5F176891] (up made-contact),exit1 [0A9B1B207FD13A6F117F95CAFA358EEE2234F19A] (up made-contact)
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): Making internal direct tunnel to 11.0.0.8:9111 ...
+Jan 01 00:15:01.000 [info] int onion_pick_cpath_exit(origin_circuit_t *, extend_info_t *): Using requested exit node '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~4EBB385C80A2CA5D671 at 11.0.0.8'
+Jan 01 00:15:01.000 [info] int circuit_handle_first_hop(origin_circuit_t *): Next router is $4EBB385C80A2CA5D671E16F1C722FBFB5F176891~4EBB385C80A2CA5D671 at 11.0.0.8: Not connected. Connecting.
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): ... application connection created and linked.
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): Making internal direct tunnel to 11.0.0.6:9111 ...
+Jan 01 00:15:01.000 [info] int onion_pick_cpath_exit(origin_circuit_t *, extend_info_t *): Using requested exit node '$FF197204099FA0E507FA46D41FED97D3337B4BAA~FF197204099FA0E507F at 11.0.0.6'
+Jan 01 00:15:01.000 [info] int circuit_handle_first_hop(origin_circuit_t *): Next router is $FF197204099FA0E507FA46D41FED97D3337B4BAA~FF197204099FA0E507F at 11.0.0.6: Not connected. Connecting.
+Jan 01 00:15:01.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): ... application connection created and linked.
+Jan 01 00:15:01.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Successfully loaded certificates from fetch.
+Jan 01 00:15:01.000 [info] void connection_free_(connection_t *): Freeing linked Directory connection [client finished] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:15:01.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:15:02.000 [info] int connection_tls_continue_handshake(or_connection_t *): Client got a v3 cert!  Moving on to v3 handshake with ciphersuite ECDHE-RSA-AES128-GCM-SHA256
+Jan 01 00:15:02.000 [info] int connection_tls_continue_handshake(or_connection_t *): Client got a v3 cert!  Moving on to v3 handshake with ciphersuite ECDHE-RSA-AES128-GCM-SHA256
+Jan 01 00:15:02.000 [info] void channel_tls_process_versions_cell(var_cell_t *, channel_tls_t *): Negotiated version 4 with 11.0.0.6:9111; Waiting for CERTS cell
+Jan 01 00:15:02.000 [info] void channel_tls_process_certs_cell(var_cell_t *, channel_tls_t *): Got some good certificates from 11.0.0.6:9111: Authenticated it.
+Jan 01 00:15:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:15:02.000 [info] void channel_tls_process_netinfo_cell(cell_t *, channel_tls_t *): Got good NETINFO cell from 11.0.0.6:9111; OR connection is now open, using protocol version 4. Its ID digest is FF197204099FA0E507FA46D41FED97D3337B4BAA. Our address is apparently 11.0.0.2.
+Jan 01 00:15:02.000 [info] void channel_tls_process_versions_cell(var_cell_t *, channel_tls_t *): Negotiated version 4 with 11.0.0.8:9111; Waiting for CERTS cell
+Jan 01 00:15:02.000 [info] void channel_tls_process_certs_cell(var_cell_t *, channel_tls_t *): Got some good certificates from 11.0.0.8:9111: Authenticated it.
+Jan 01 00:15:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:15:02.000 [info] void channel_tls_process_netinfo_cell(cell_t *, channel_tls_t *): Got good NETINFO cell from 11.0.0.8:9111; OR connection is now open, using protocol version 4. Its ID digest is 4EBB385C80A2CA5D671E16F1C722FBFB5F176891. Our address is apparently 11.0.0.2.
+Jan 01 00:15:02.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:02.000 [info] internal circ (length 1, last hop FF197204099FA0E507FA46D41FED97D3337B4BAA): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:15:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:02.000 [info] internal circ (length 1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:15:02.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to $FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6 doesn't allow optimistic data for connection to 11.0.0.6
+Jan 01 00:15:02.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 1 on circ 3795275186 to begin stream 19599.
+Jan 01 00:15:02.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket -1, n_circ_id 3795275186
+Jan 01 00:15:02.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:02.000 [info] internal circ (length 1, last hop 4EBB385C80A2CA5D671E16F1C722FBFB5F176891): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:15:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:02.000 [info] internal circ (length 1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:15:02.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to $4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8 doesn't allow optimistic data for connection to 11.0.0.8
+Jan 01 00:15:02.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 1 on circ 3094283706 to begin stream 53021.
+Jan 01 00:15:02.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket -1, n_circ_id 3094283706
+Jan 01 00:15:02.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 3795275186 streamid 19599 after 0 seconds.
+Jan 01 00:15:02.000 [info] internal circ (length 1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:15:02.000 [notice] Bootstrapped 50%: Loading relay descriptors
+Jan 01 00:15:02.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 3094283706 streamid 53021 after 0 seconds.
+Jan 01 00:15:02.000 [info] internal circ (length 1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:15:02.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): -1: end cell (closed normally) for stream 19599. Removing stream.
+Jan 01 00:15:02.000 [info] void connection_free_(connection_t *): Freeing linked Socks connection [open] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:02.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Received answer to microdescriptor request (status 200, size 376) from server '11.0.0.6:9111'
+Jan 01 00:15:02.000 [info] void connection_free_(connection_t *): Freeing linked Directory connection [client finished] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:02.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): -1: end cell (closed normally) for stream 53021. Removing stream.
+Jan 01 00:15:02.000 [info] void connection_free_(connection_t *): Freeing linked Socks connection [open] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:02.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Received answer to microdescriptor request (status 200, size 1538) from server '11.0.0.8:9111'
+Jan 01 00:15:02.000 [info] void connection_free_(connection_t *): Freeing linked Directory connection [client finished] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:15:03.000 [notice] Bootstrapped 80%: Connecting to the Tor network
+Jan 01 00:15:03.000 [info] void circuit_predict_and_launch_new(): Have 0 clean circs (0 internal), need another exit circ.
+Jan 01 00:15:03.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:15:03.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:15:03.000 [notice] Bootstrapped 90%: Establishing a Tor circuit
+Jan 01 00:15:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:15:03.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:03.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:15:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:03.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 0.000000/1.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:15:03.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:03.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:15:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:03.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:03.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:15:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:03.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 1.000000/1.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:15:03.000 [notice] Tor has successfully opened a circuit. Looks like client functionality is working.
+Jan 01 00:15:03.000 [notice] Bootstrapped 100%: Done
+Jan 01 00:15:04.000 [info] void circuit_predict_and_launch_new(): Have 1 clean circs (0 internal), need another exit circ.
+Jan 01 00:15:04.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:15:04.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:15:04.000 [info] int circuit_handle_first_hop(origin_circuit_t *): Next router is $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7: Not connected. Connecting.
+Jan 01 00:15:04.000 [info] int connection_tls_continue_handshake(or_connection_t *): Client got a v3 cert!  Moving on to v3 handshake with ciphersuite ECDHE-RSA-AES128-GCM-SHA256
+Jan 01 00:15:04.000 [info] void channel_tls_process_versions_cell(var_cell_t *, channel_tls_t *): Negotiated version 4 with 11.0.0.7:9111; Waiting for CERTS cell
+Jan 01 00:15:04.000 [info] void channel_tls_process_certs_cell(var_cell_t *, channel_tls_t *): Got some good certificates from 11.0.0.7:9111: Authenticated it.
+Jan 01 00:15:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:15:04.000 [info] void channel_tls_process_netinfo_cell(cell_t *, channel_tls_t *): Got good NETINFO cell from 11.0.0.7:9111; OR connection is now open, using protocol version 4. Its ID digest is 0A9B1B207FD13A6F117F95CAFA358EEE2234F19A. Our address is apparently 11.0.0.2.
+Jan 01 00:15:04.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:04.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:15:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:04.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 0.000000/1.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:15:04.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:04.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:15:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:05.000 [info] void circuit_predict_and_launch_new(): Have 2 clean circs (0 uptime-internal, 0 internal), need another hidden service circ.
+Jan 01 00:15:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:15:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:05.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:15:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:05.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 1.000000/1.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:15:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:05.000 [info] internal (high-uptime) circ (length 3, last hop relay2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed)
+Jan 01 00:15:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:05.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 1.000000/2.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:15:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:05.000 [info] internal (high-uptime) circ (length 3, last hop relay2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed)
+Jan 01 00:15:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:05.000 [info] internal (high-uptime) circ (length 3, last hop relay2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:15:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:05.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 2.000000/2.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:15:06.000 [info] void circuit_predict_and_launch_new(): Have 3 clean circs (1 uptime-internal, 1 internal), need another hidden service circ.
+Jan 01 00:15:06.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:15:06.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:06.000 [info] internal (high-uptime) circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:15:06.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:06.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 1.000000/2.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:15:06.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:06.000 [info] internal (high-uptime) circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:15:06.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:15:06.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:15:06.000 [info] internal (high-uptime) circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:15:06.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:15:06.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 2.000000/2.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:15:31.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:16:02.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:16:07.000 [info] void circuit_predict_and_launch_new(): Have 4 clean circs need another buildtime test circ.
+Jan 01 00:16:07.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:16:07.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:16:07.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:16:07.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:16:07.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:16:07.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:16:07.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:16:07.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 2.000000/3.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:16:07.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:16:07.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:16:07.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:16:07.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:16:07.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:16:07.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:16:07.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 3.000000/3.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:16:37.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:17:03.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:17:08.000 [info] void circuit_predict_and_launch_new(): Have 5 clean circs need another buildtime test circ.
+Jan 01 00:17:08.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:17:08.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:17:08.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:17:08.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:17:08.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:17:08.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:17:08.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:17:08.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 0.000000/1.000000 for guard exit2 ($4EBB385C80A2CA5D671E16F1C722FBFB5F176891)
+Jan 01 00:17:08.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:17:08.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:17:08.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:17:08.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:17:08.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:17:08.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:17:08.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 1.000000/1.000000 for guard exit2 ($4EBB385C80A2CA5D671E16F1C722FBFB5F176891)
+Jan 01 00:17:38.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:18:04.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:18:09.000 [info] void circuit_predict_and_launch_new(): Have 6 clean circs need another buildtime test circ.
+Jan 01 00:18:09.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:18:09.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:18:09.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:18:09.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:18:09.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:18:09.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:18:09.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:18:09.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 2.000000/3.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:18:09.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:18:09.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:18:09.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:18:09.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:18:09.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:18:09.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:18:09.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 3.000000/3.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:18:39.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:19:05.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:19:10.000 [info] void circuit_predict_and_launch_new(): Have 7 clean circs need another buildtime test circ.
+Jan 01 00:19:10.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:19:10.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:19:10.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:19:10.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:19:10.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:19:10.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:19:10.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:19:10.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 3.000000/4.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:19:10.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:19:10.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:19:10.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:19:10.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:19:10.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:19:10.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:19:10.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 4.000000/4.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:19:40.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:20:06.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:20:11.000 [info] void circuit_predict_and_launch_new(): Have 8 clean circs need another buildtime test circ.
+Jan 01 00:20:11.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:20:11.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:20:11.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:20:11.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:20:11.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:20:11.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:20:11.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:20:11.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 3.000000/4.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:20:11.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:20:11.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:20:11.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:20:11.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:20:11.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:20:11.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:20:11.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 4.000000/4.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:20:41.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:21:00.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:00.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:00.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Unknown descriptor hxsttdz4esasch5x. Fetching.
+Jan 01 00:21:00.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): Making internal anonymized tunnel to 11.0.0.5:9111 ...
+Jan 01 00:21:00.000 [info] origin_circuit_t *circuit_launch_by_extend_info(uint8_t, extend_info_t *, int): Cannibalizing circ 'exit1' for purpose 5 (General-purpose client)
+Jan 01 00:21:00.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:00.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): ... application connection created and linked.
+Jan 01 00:21:00.000 [info] int directory_get_from_hs_dir(const char *, const rend_data_t *, routerstatus_t *): Sending fetch request for v2 descriptor for service 'hxsttdz4esasch5x' with descriptor ID 'aesc2ipvzqhfn26k7zdq2lhvmzigtdb7', auth type 0, and descriptor cookie '[none]' to hidden service directory $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF~relay1 at 11.0.0.5
+Jan 01 00:21:00.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for rendezvous desc' state. Leaving it on buffer.
+Jan 01 00:21:00.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:21:00.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:21:00.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:00.000 [info] internal (high-uptime) circ (length 4, last hop relay1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open)
+Jan 01 00:21:00.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:21:00.000 [info] internal (high-uptime) circ (length 4): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open)
+Jan 01 00:21:00.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF~relay1 at 11.0.0.5 doesn't allow optimistic data for connection to 11.0.0.5
+Jan 01 00:21:00.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 1 on circ 2781986138 to begin stream 19317.
+Jan 01 00:21:00.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket -1, n_circ_id 2781986138
+Jan 01 00:21:00.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 2781986138 streamid 19317 after 0 seconds.
+Jan 01 00:21:00.000 [info] internal (high-uptime) circ (length 4): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open)
+Jan 01 00:21:01.000 [info] void circuit_predict_and_launch_new(): Have 8 clean circs (1 uptime-internal, 1 internal), need another hidden service circ.
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:21:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:01.000 [info] internal (high-uptime) circ (length 3, last hop relay1): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed)
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:01.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 4.000000/5.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:21:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:01.000 [info] internal (high-uptime) circ (length 3, last hop relay1): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed)
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:01.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): -1: end cell (closed normally) for stream 19317. Removing stream.
+Jan 01 00:21:01.000 [info] void connection_free_(connection_t *): Freeing linked Socks connection [open] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:21:01.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Received rendezvous descriptor (size 3237, status 200 ("OK"))
+Jan 01 00:21:01.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Successfully fetched v2 rendezvous descriptor.
+Jan 01 00:21:01.000 [info] void rend_client_desc_trynow(const char *): Rend desc is usable. Launching circuits.
+Jan 01 00:21:01.000 [info] origin_circuit_t *circuit_launch_by_extend_info(uint8_t, extend_info_t *, int): Cannibalizing circ 'relay2' for purpose 9 (Hidden service client: Establishing rendezvous point)
+Jan 01 00:21:01.000 [info] void rend_client_rendcirc_has_opened(origin_circuit_t *): rendcirc is open
+Jan 01 00:21:01.000 [info] int rend_client_send_establish_rendezvous(origin_circuit_t *): Sending an ESTABLISH_RENDEZVOUS cell
+Jan 01 00:21:01.000 [info] int circuit_get_open_circ_or_launch(entry_connection_t *, uint8_t, origin_circuit_t **): Chose $FF197204099FA0E507FA46D41FED97D3337B4BAA~$FF197204099FA0E507 at 11.0.0.6 as intro point for 'hxsttdz4esasch5x'.
+Jan 01 00:21:01.000 [info] int onion_pick_cpath_exit(origin_circuit_t *, extend_info_t *): Using requested exit node '$FF197204099FA0E507FA46D41FED97D3337B4BAA~$FF197204099FA0E507 at 11.0.0.6'
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:21:01.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): Intro (4145719943) and rend (4118049780) circs are not both ready. Stalling conn. (0 sec old)
+Jan 01 00:21:01.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): Intro (4145719943) and rend (4118049780) circs are not both ready. Stalling conn. (0 sec old)
+Jan 01 00:21:01.000 [info] void connection_free_(connection_t *): Freeing linked Directory connection [client finished] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:21:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:01.000 [info] internal circ (length 4, last hop $FF197204099FA0E507FA46D41FED97D3337B4BAA): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(closed) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed)
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:01.000 [info] internal (high-uptime) circ (length 3, last hop relay1): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open)
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:21:01.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 5.000000/5.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:21:01.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): Intro (4145719943) and rend (4118049780) circs are not both ready. Stalling conn. (0 sec old)
+Jan 01 00:21:01.000 [info] int rend_client_rendezvous_acked(origin_circuit_t *, const uint8_t *, size_t): Got rendezvous ack. This circuit is now ready for rendezvous.
+Jan 01 00:21:01.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): ready rend circ 4118049780 already here (no intro-ack yet on intro 4145719943). (stream 0 sec old)
+Jan 01 00:21:01.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): Intro (4145719943) and rend (4118049780) circs are not both ready. Stalling conn. (0 sec old)
+Jan 01 00:21:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:01.000 [info] internal circ (length 4, last hop $FF197204099FA0E507FA46D41FED97D3337B4BAA): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(closed) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed)
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:01.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:01.000 [info] internal circ (length 4, last hop $FF197204099FA0E507FA46D41FED97D3337B4BAA): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed)
+Jan 01 00:21:01.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:02.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): ready rend circ 4118049780 already here (no intro-ack yet on intro 4145719943). (stream 1 sec old)
+Jan 01 00:21:02.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): Intro (4145719943) and rend (4118049780) circs are not both ready. Stalling conn. (1 sec old)
+Jan 01 00:21:02.000 [info] void circuit_predict_and_launch_new(): Have 8 clean circs (1 uptime-internal, 1 internal), need another hidden service circ.
+Jan 01 00:21:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:21:02.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:21:02.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:02.000 [info] internal (high-uptime) circ (length 3, last hop exit2): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:21:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:02.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 4.000000/5.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:21:02.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:02.000 [info] internal (high-uptime) circ (length 3, last hop exit2): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:21:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:21:02.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:02.000 [info] internal circ (length 4, last hop $FF197204099FA0E507FA46D41FED97D3337B4BAA): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:21:02.000 [info] void rend_client_introcirc_has_opened(origin_circuit_t *): introcirc is open
+Jan 01 00:21:02.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): ready rend circ 4118049780 already here (no intro-ack yet on intro 4145719943). (stream 1 sec old)
+Jan 01 00:21:02.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): found open intro circ 4145719943 (rend 4118049780); sending introduction. (stream 1 sec old)
+Jan 01 00:21:02.000 [info] int rend_client_send_introduction(origin_circuit_t *, origin_circuit_t *): Sending an INTRODUCE1 cell
+Jan 01 00:21:02.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Pending rendezvous point currently open.
+Jan 01 00:21:02.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:21:02.000 [info] internal (high-uptime) circ (length 3, last hop exit2): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:21:02.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:21:02.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 5.000000/5.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:21:02.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): Intro circ 4145719943 present and awaiting ack (rend 4118049780). Stalling. (stream 1 sec old)
+Jan 01 00:21:02.000 [info] int rend_client_introduction_acked(origin_circuit_t *, const uint8_t *, size_t): Received ack. Telling rend circ...
+Jan 01 00:21:03.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): pending-join circ 4118049780 already here, with intro ack. Stalling. (stream 2 sec old)
+Jan 01 00:21:04.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): pending-join circ 4118049780 already here, with intro ack. Stalling. (stream 3 sec old)
+Jan 01 00:21:04.000 [info] int rend_client_receive_rendezvous(origin_circuit_t *, const uint8_t *, size_t): Got RENDEZVOUS2 cell from hidden service.
+Jan 01 00:21:04.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 3 sec old)
+Jan 01 00:21:04.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:04.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:04.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:04.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45162.
+Jan 01 00:21:04.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 502, n_circ_id 4118049780
+Jan 01 00:21:04.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45162 after 0 seconds.
+Jan 01 00:21:04.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:07.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:21:08.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 502: end cell (closed normally) for stream 45162. Removing stream.
+Jan 01 00:21:18.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:18.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:18.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:18.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:18.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:18.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:18.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:18.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45163.
+Jan 01 00:21:18.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 683, n_circ_id 4118049780
+Jan 01 00:21:18.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:19.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45163 after 1 seconds.
+Jan 01 00:21:19.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:22.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 683: end cell (closed normally) for stream 45163. Removing stream.
+Jan 01 00:21:23.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:23.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:23.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:23.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:23.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:23.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:23.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:23.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45164.
+Jan 01 00:21:23.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 714, n_circ_id 4118049780
+Jan 01 00:21:23.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:24.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45164 after 1 seconds.
+Jan 01 00:21:24.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:28.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 714: end cell (closed normally) for stream 45164. Removing stream.
+Jan 01 00:21:31.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:31.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:31.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:31.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:31.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:31.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:31.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:31.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45165.
+Jan 01 00:21:31.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 855, n_circ_id 4118049780
+Jan 01 00:21:31.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:31.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45165 after 0 seconds.
+Jan 01 00:21:31.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:32.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:21:35.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 855: end cell (closed normally) for stream 45165. Removing stream.
+Jan 01 00:21:37.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:37.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:37.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:37.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:37.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:37.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:37.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:37.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45166.
+Jan 01 00:21:37.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 929, n_circ_id 4118049780
+Jan 01 00:21:37.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:37.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45166 after 0 seconds.
+Jan 01 00:21:37.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:41.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 929: end cell (closed normally) for stream 45166. Removing stream.
+Jan 01 00:21:42.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:42.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:42.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:42.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:42.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:42.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:42.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:42.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45167.
+Jan 01 00:21:42.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 1039, n_circ_id 4118049780
+Jan 01 00:21:42.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:43.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45167 after 1 seconds.
+Jan 01 00:21:43.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:46.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 1039: end cell (closed normally) for stream 45167. Removing stream.
+Jan 01 00:21:48.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:48.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:48.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:48.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:48.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:48.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:48.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:48.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45168.
+Jan 01 00:21:48.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 1145, n_circ_id 4118049780
+Jan 01 00:21:48.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:49.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45168 after 1 seconds.
+Jan 01 00:21:49.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:21:52.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 1145: end cell (closed normally) for stream 45168. Removing stream.
+Jan 01 00:21:57.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:21:57.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:21:57.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:21:57.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:21:57.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:21:57.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:21:57.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:21:57.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45169.
+Jan 01 00:21:57.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 1344, n_circ_id 4118049780
+Jan 01 00:21:57.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:21:58.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45169 after 1 seconds.
+Jan 01 00:21:58.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:22:02.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 1344: end cell (closed normally) for stream 45169. Removing stream.
+Jan 01 00:22:03.000 [info] void circuit_predict_and_launch_new(): Have 9 clean circs need another buildtime test circ.
+Jan 01 00:22:03.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:22:03.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:22:03.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:22:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:22:03.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:22:03.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:22:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:22:03.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 1.000000/2.000000 for guard exit2 ($4EBB385C80A2CA5D671E16F1C722FBFB5F176891)
+Jan 01 00:22:03.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:22:03.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:22:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:22:03.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:22:03.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:22:03.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:22:03.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 2.000000/2.000000 for guard exit2 ($4EBB385C80A2CA5D671E16F1C722FBFB5F176891)
+Jan 01 00:22:08.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:22:11.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:22:11.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:22:11.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:22:11.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:22:11.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:22:11.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:22:11.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:22:11.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45170.
+Jan 01 00:22:11.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 1530, n_circ_id 4118049780
+Jan 01 00:22:11.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:22:11.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45170 after 0 seconds.
+Jan 01 00:22:11.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:22:15.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 1530: end cell (closed normally) for stream 45170. Removing stream.
+Jan 01 00:22:18.000 [info] int connection_handle_listener_read(connection_t *, int): New SOCKS connection opened from 127.0.0.1.
+Jan 01 00:22:18.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Got a hidden service request for ID 'hxsttdz4esasch5x'
+Jan 01 00:22:18.000 [info] int connection_ap_handshake_rewrite_and_attach(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Descriptor is here. Great.
+Jan 01 00:22:18.000 [info] int connection_ap_handshake_attach_circuit(entry_connection_t *): rend joined circ 4118049780 already here. attaching. (stream 0 sec old)
+Jan 01 00:22:18.000 [info] void pathbias_count_use_attempt(origin_circuit_t *): Used circuit 6 is already in path state use succeeded. Circuit is a Hidden service client: Active rendezvous point currently open.
+Jan 01 00:22:18.000 [info] void rend_client_note_connection_attempt_ended(const rend_data_t *): Connection attempt for hxsttdz4esasch5x has ended; cleaning up temporary state.
+Jan 01 00:22:18.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to hidden service doesn't allow optimistic data for connection to hxsttdz4esasch5x
+Jan 01 00:22:18.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 0 on circ 4118049780 to begin stream 45171.
+Jan 01 00:22:18.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket 1595, n_circ_id 4118049780
+Jan 01 00:22:18.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for connect response' state. Leaving it on buffer.
+Jan 01 00:22:19.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 4118049780 streamid 45171 after 1 seconds.
+Jan 01 00:22:19.000 [info] internal (high-uptime) circ (length 3): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open)
+Jan 01 00:22:22.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 1595: end cell (closed normally) for stream 45171. Removing stream.
+Jan 01 00:22:33.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:23:04.000 [info] void circuit_predict_and_launch_new(): Have 10 clean circs need another buildtime test circ.
+Jan 01 00:23:04.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:23:04.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:23:04.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:23:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:23:04.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:23:04.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:23:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:23:04.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 2.000000/3.000000 for guard exit2 ($4EBB385C80A2CA5D671E16F1C722FBFB5F176891)
+Jan 01 00:23:04.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:23:04.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:23:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:23:04.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:23:04.000 [info] exit circ (length 3, last hop exit1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:23:04.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:23:04.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 3.000000/3.000000 for guard exit2 ($4EBB385C80A2CA5D671E16F1C722FBFB5F176891)
+Jan 01 00:23:09.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:23:34.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:24:05.000 [info] void circuit_predict_and_launch_new(): Have 11 clean circs need another buildtime test circ.
+Jan 01 00:24:05.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:24:05.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:24:05.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:24:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:24:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:24:05.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:24:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:24:05.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 5.000000/6.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:24:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:24:05.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:24:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:24:05.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:24:05.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:24:05.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:24:05.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 6.000000/6.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:24:10.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:24:35.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:25:11.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:25:21.000 [info] void circuit_predict_and_launch_new(): Have 10 clean circs need another buildtime test circ.
+Jan 01 00:25:21.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:25:21.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:25:21.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:25:21.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:25:21.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:25:21.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:25:21.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:25:21.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 6.000000/7.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:25:21.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:25:21.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:25:21.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:25:21.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:25:21.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:25:21.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:25:21.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 7.000000/7.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:25:51.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:26:12.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:26:22.000 [info] void circuit_predict_and_launch_new(): Have 11 clean circs need another buildtime test circ.
+Jan 01 00:26:22.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:26:22.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:26:22.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:26:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:26:22.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:26:22.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:26:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:26:22.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 7.000000/8.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:26:22.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:26:22.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:26:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:26:22.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:26:22.000 [info] exit circ (length 3, last hop exit2): $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:26:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:26:22.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 8.000000/8.000000 for guard exit1 ($0A9B1B207FD13A6F117F95CAFA358EEE2234F19A)
+Jan 01 00:26:52.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:27:13.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:27:23.000 [info] void circuit_predict_and_launch_new(): Have 11 clean circs need another buildtime test circ.
+Jan 01 00:27:23.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:27:23.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:27:23.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:27:23.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:27:23.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:27:23.000 [info] exit circ (length 3, last hop exit2): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:27:23.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:27:23.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 5.000000/6.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:27:23.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:27:23.000 [info] exit circ (length 3, last hop exit2): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(closed)
+Jan 01 00:27:23.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:27:23.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:27:23.000 [info] exit circ (length 3, last hop exit2): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open) $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:27:23.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:27:23.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 6.000000/6.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:27:53.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:28:14.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:28:21.000 [info] void update_consensus_networkstatus_downloads(time_t): Launching microdesc networkstatus consensus download.
+Jan 01 00:28:21.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): Making internal direct tunnel to 11.0.0.8:9111 ...
+Jan 01 00:28:21.000 [info] int onion_pick_cpath_exit(origin_circuit_t *, extend_info_t *): Using requested exit node '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:28:21.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8'
+Jan 01 00:28:21.000 [info] entry_connection_t *connection_ap_make_link(connection_t *, char *, uint16_t, const char *, int, int, int, int): ... application connection created and linked.
+Jan 01 00:28:21.000 [info] void directory_send_command(dir_connection_t *, int, int, const char *, const char *, size_t, time_t): Downloading consensus from 11.0.0.8:9111 using /tor/status-vote/current/consensus-microdesc/BA3FDA.z
+Jan 01 00:28:21.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:28:21.000 [info] int connection_edge_process_inbuf(edge_connection_t *, int): data from edge while in 'waiting for circuit' state. Leaving it on buffer.
+Jan 01 00:28:21.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:28:21.000 [info] internal circ (length 1, last hop exit2): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:28:21.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:28:21.000 [info] internal circ (length 1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:28:21.000 [info] void link_apconn_to_circ(entry_connection_t *, origin_circuit_t *, crypt_path_t *): Looks like completed circuit to $4EBB385C80A2CA5D671E16F1C722FBFB5F176891~exit2 at 11.0.0.8 doesn't allow optimistic data for connection to 11.0.0.8
+Jan 01 00:28:21.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Sending relay cell 1 on circ 3555948596 to begin stream 25250.
+Jan 01 00:28:21.000 [info] int connection_ap_handshake_send_begin(entry_connection_t *): Address/port sent, ap socket -1, n_circ_id 3555948596
+Jan 01 00:28:21.000 [info] int connection_edge_process_relay_cell_not_open(relay_header_t *, cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): 'connected' received for circid 3555948596 streamid 25250 after 0 seconds.
+Jan 01 00:28:21.000 [info] internal circ (length 1): $4EBB385C80A2CA5D671E16F1C722FBFB5F176891(open)
+Jan 01 00:28:21.000 [info] int connection_edge_process_relay_cell(cell_t *, circuit_t *, edge_connection_t *, crypt_path_t *): -1: end cell (closed normally) for stream 25250. Removing stream.
+Jan 01 00:28:21.000 [info] void connection_free_(connection_t *): Freeing linked Socks connection [open] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:28:21.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Received consensus directory (size 2072) from server '11.0.0.8:9111'
+Jan 01 00:28:21.000 [info] A consensus needs 1 good signatures from recognized authorities for us to accept it. This one has 1 (4uthority).
+Jan 01 00:28:21.000 [info] void update_consensus_networkstatus_fetch_time_impl(time_t, int): Live microdesc consensus will be the most recent until 1970-01-01 00:30:00 and will expire at 1970-01-01 00:40:00; fetching the next one at 1970-01-01 00:35:16.
+Jan 01 00:28:21.000 [info] void cell_ewma_set_scale_factor(const or_options_t *, const networkstatus_t *): Enabled cell_ewma algorithm because of value in CircuitPriorityHalflife in configuration; scale factor is 0.793701 per 10 seconds
+Jan 01 00:28:21.000 [info] int connection_dir_client_reached_eof(dir_connection_t *): Successfully loaded consensus.
+Jan 01 00:28:21.000 [info] void connection_free_(connection_t *): Freeing linked Directory connection [client finished] with 0 bytes on inbuf, 0 on outbuf.
+Jan 01 00:28:57.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"
+Jan 01 00:29:15.000 [info] void routerlist_remove_old_routers(): We have 0 live routers and 0 old router descriptors.
+Jan 01 00:29:22.000 [info] void circuit_predict_and_launch_new(): Have 10 clean circs need another buildtime test circ.
+Jan 01 00:29:22.000 [info] const node_t *choose_good_exit_server_general(int, int): Found 2 servers that might support 0/0 pending connections.
+Jan 01 00:29:22.000 [info] int compute_weighted_bandwidths(const smartlist_t *, bandwidth_weight_rule_t, u64_dbl_t **): Empty routerlist passed in to consensus weight node selection for rule weight as exit
+Jan 01 00:29:22.000 [info] const node_t *choose_good_exit_server_general(int, int): Chose exit server '$0A9B1B207FD13A6F117F95CAFA358EEE2234F19A~exit1 at 11.0.0.7'
+Jan 01 00:29:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): First hop: finished sending CREATE_FAST cell to '$FF197204099FA0E507FA46D41FED97D3337B4BAA~relay2 at 11.0.0.6'
+Jan 01 00:29:22.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:29:22.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(closed) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:29:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:29:22.000 [info] int entry_guard_inc_circ_attempt_count(entry_guard_t *): Got success count 6.000000/7.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:29:22.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:29:22.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(closed)
+Jan 01 00:29:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): Sending extend relay cell.
+Jan 01 00:29:22.000 [info] int circuit_finish_handshake(origin_circuit_t *, const created_cell_t *): Finished building circuit hop:
+Jan 01 00:29:22.000 [info] exit circ (length 3, last hop exit1): $FF197204099FA0E507FA46D41FED97D3337B4BAA(open) $3FB0BD7827C760FE7F9DD810FCB10322D63AB4CF(open) $0A9B1B207FD13A6F117F95CAFA358EEE2234F19A(open)
+Jan 01 00:29:22.000 [info] int circuit_send_next_onion_skin(origin_circuit_t *): circuit built!
+Jan 01 00:29:22.000 [info] void pathbias_count_build_success(origin_circuit_t *): Got success count 7.000000/7.000000 for guard relay2 ($FF197204099FA0E507FA46D41FED97D3337B4BAA)
+Jan 01 00:29:52.000 [info] int or_state_save(time_t): Saved state to "shadow.data/hosts/torhiddenclient/state"

@@ -1,0 +1,9 @@
+ORPort 0
+DirPort 0
+ClientOnly 1
+SocksPort 127.0.0.1:9000 IsolateDestAddr
+BandwidthRate 5120000
+BandwidthBurst 10240000
+NewCircuitPeriod 1
+UseEntryGuardsAsDirGuards 0
+

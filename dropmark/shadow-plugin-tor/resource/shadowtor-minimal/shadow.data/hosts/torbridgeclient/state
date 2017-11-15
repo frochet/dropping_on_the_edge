@@ -1,0 +1,15 @@
+# Tor state file last generated on 1970-01-01 00:29:34 local time
+# Other times below are in UTC
+# You *do not* need to edit this file.
+
+EntryGuard bridge F63C257B0819549FCD3E476FB534C08E550AC29D DirCache
+EntryGuardAddedBy F63C257B0819549FCD3E476FB534C08E550AC29D 0.2.7.6 1969-12-29 23:41:39
+EntryGuardPathBias 18.000000 18.000000 18.000000 0.000000 0.000000 0.000000
+EntryGuardPathUseBias 1.000000 1.000000
+TorVersion Tor 0.2.7.6 (git-baa46033fdf18165)
+LastWritten 1970-01-01 00:29:34
+TotalBuildTimes 18
+CircuitBuildTimeBin 625 3
+CircuitBuildTimeBin 675 4
+CircuitBuildTimeBin 725 8
+CircuitBuildTimeBin 775 3

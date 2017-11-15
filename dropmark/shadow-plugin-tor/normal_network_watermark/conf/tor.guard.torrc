@@ -1,0 +1,5 @@
+ORPort 9111
+SocksPort 0
+DirPort 0
+ExitPolicy "reject *:*"
+ActivateSignalAttackListen 1

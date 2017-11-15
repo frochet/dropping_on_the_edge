@@ -1,0 +1,13 @@
+#ifndef BYTE_ORDER
+# define BIG_ENDIAN 1
+# define LITTLE_ENDIAN 2
+#cmakedefine IS_BIG_ENDIAN 1
+# ifdef IS_BIG_ENDIAN
+#  define BYTE_ORDER BIG_ENDIAN
+# else
+#  define BYTE_ORDER LITTLE_ENDIAN
+# endif
+#endif
+
+#define SHADOW_VERSION_STRING "${SHADOW_VERSION_STRING_CONF}"
+#define SHADOW_INFO_STRING "${SHADOW_INFO_STRING_CONF}"

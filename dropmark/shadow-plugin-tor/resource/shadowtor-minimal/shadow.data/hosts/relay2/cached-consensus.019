@@ -1,0 +1,46 @@
+network-status-version 3
+vote-status consensus
+consensus-method 21
+valid-after 1970-01-01 00:20:00
+fresh-until 1970-01-01 00:25:00
+valid-until 1970-01-01 00:35:00
+voting-delay 20 20
+client-versions 
+server-versions 
+known-flags Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+dir-source 4uthority BA3FDA7CE3B41FBF9BB3615BE6ACD28D883E694B 11.0.0.9 11.0.0.9 9112 9111
+contact shadow-support@cs.umn.edu
+vote-digest C953B7C896489D49289CA4B1CF633A6379ADF863
+r exit1 CpsbIH/ROm8Rf5XK+jWO7iI08Zo apb0OlAhWx+Y+WvYHCuAo1hgDFM 1970-01-01 00:01:00 11.0.0.7 9111 9112
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+p accept 1-65535
+r relay1 P7C9eCfHYP5/ndgQ/LEDItY6tM8 49OrkOvcdVLOA5ctP3tiPlHNuqI 1970-01-01 00:01:00 11.0.0.5 9111 9112
+s Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+p reject 1-65535
+r exit2 Trs4XICiyl1nHhbxxyL7+18XaJE 8fltVAfXn4qRIPIOQvt3jpUvZsc 1970-01-01 00:01:00 11.0.0.8 9111 9112
+s Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+p accept 1-65535
+r 4uthority pSyltWxk2GT2rkPlbymsvVcG3aE /AUnrZLd4cdinvZA7sP3QMHRY5A 1970-01-01 00:01:01 11.0.0.9 9111 9112
+s Authority Fast HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+p reject 1-65535
+r relay2 /xlyBAmfoOUH+kbUH+2X0zN7S6o PGYNOK3w0V8aZi6zI8Fu0bPNErc 1970-01-01 00:01:00 11.0.0.6 9111 9112
+s Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+p reject 1-65535
+directory-footer
+bandwidth-weights Wbd=3333 Wbe=0 Wbg=0 Wbm=10000 Wdb=10000 Web=10000 Wed=3333 Wee=10000 Weg=3333 Wem=10000 Wgb=10000 Wgd=3333 Wgg=10000 Wgm=10000 Wmb=10000 Wmd=3333 Wme=0 Wmg=0 Wmm=10000
+directory-signature BA3FDA7CE3B41FBF9BB3615BE6ACD28D883E694B B6B52D36DA47A014B5CF65A55EDC62C93523DCC3
+-----BEGIN SIGNATURE-----
+3kIS4pNJic3fPHlaRnI4gXi/SaZq4YleIWeDnHG6vu8t0zVWpegVMzPAyDlTPhg2
+X/KVgGor/4YwiXpTyLyq/hER4POeLm32bBzAMbVPq0wskg/k0J0c31sCt2Mxnogb
+mhSTNlg+jtPAskU+rw8xKgSQxiE3TwFvfQeRJV7mVTc=
+-----END SIGNATURE-----

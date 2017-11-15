@@ -1,0 +1,261 @@
+@downloaded-at 1970-01-01 00:02:54
+@source "11.0.0.8"
+router exit1 11.0.0.7 9111 0 9112
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQAAALRAbaerPfAAzyXRBbsUYfMZ4cZucIDaLJTxmUxMcTPURYJAQAgBABlqxa3
+mKejHyAZCJ6VUvFortGMwh3ht8l1wBVhyWuLtTv2XzZGFA/4svn2HdOBFR5mqAtk
+AiFw1qAM6lBWZqS0R5tZ+W/Rn4Z7vK9+g8f8ByhHhe2289EwpKLjpfZ2DwY=
+-----END ED25519 CERT-----
+master-key-ed25519 ZasWt5inox8gGQielVLxaK7RjMId4bfJdcAVYclri7U
+platform Tor 0.2.7.6 on Linux
+protocols Link 1 2 Circuit 1
+published 1970-01-01 00:01:00
+fingerprint 0A9B 1B20 7FD1 3A6F 117F 95CA FA35 8EEE 2234 F19A
+uptime 0
+bandwidth 1024000 1024000 0
+extra-info-digest 3DEB47FBFB37BCA7C355DB5CDB2BFBC5CB6D6EDB qILVb/XkbkK97J5ikQm+ryEGZ1ZjC2Z+TQnJBjh/kHw
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAKMBEqOxOGoCoKSlqWu7yLjfMuTHy8EAPZAau5BFOVU4ITcXaEtCq3+1
+aWwdPg+Oraqq52DAO3YOgXWB5ik9KIyImQ+N5Zb+V7WVIJIpacT5aILUw2U/l/fy
+4utuSVmF6IU+92Kb7yNyACPlDqsRSCUZEhkMH5WHKLM6n78uh8I1AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBANYeYLdX8DDHN55pgsI5NkZ3It15/fXrIzI7R8/azj3CyirzYU3FFHnj
+9U9wfrNCVGAb2r9wHMUQe+3u2ec3lnIima9jfcvW1XKHrR/xllT0kn8N+bkU9IBs
+GDkXz+2WbzjbYb5MdDwMZGLA2f9o7whNH3yUsk4j97gtyREyqEMxAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+QCR2RM725tp+FH1ifL/xDTGk2HOtIl+gQOEU60Fb1IFGh+Y571+aaXFdDb28FjCf
+kfSB8lHUFgxyBSW+Bov4kUck2TNaoyS6fONGerqjhxJsYCpcT/rn/fXJL0LHmeDT
+qv3+1JTQ+Gc7wnRruksLxvV57oUTB5qQAf0bYwo7RXo=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 0
+-----BEGIN ED25519 CERT-----
+AQoAAACpAWWrFreYp6MfIBkInpVS8Wiu0YzCHeG3yXXAFWHJa4u1ACkxIrxJn2Cm
+Lw4CUfbCDwW6aIYa0Ih2XpiRc3NuuSDln8sWLI/rlk6Rws333alTd6FAiLnSXVuF
+VInQtYZRHQU=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact shadow-support@cs.umn.edu
+ntor-onion-key LkoRqLktUp8SScCR4WNL6uNXzM6AFZadu0rAlHLtqQ4=
+accept *:*
+router-sig-ed25519 9eq2H9A8G8rva9quRhXfXGv11iwOXYuecmWqF1pf9/6km8eAqTAvgalLxCswEpc8zd8k8rp9mKr+rsmWQkBICg
+router-signature
+-----BEGIN SIGNATURE-----
+k4kbSY4YgX1E65iN2TIrhEXR8jbQSH59LvemZh0v2bz2KGb/gmlFwu35wx+GN9LW
+YkS/JZd24CrYO7o0JFTM9t3Dmk/5mz8zeRZRnL8WQEpMrBq37Wx2EVth7ebt5LSG
+cGS7D3X/QAVvrRgMM3h07eIg71sbctezrasq3rWhQTM=
+-----END SIGNATURE-----
+@downloaded-at 1970-01-01 00:02:54
+@source "11.0.0.8"
+router relay1 11.0.0.5 9111 0 9112
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQAAALRATymNFhnSzj7VQL1w+dmUROD3vcBXa1kU/vagvS+vtboAQAgBAB2QEIt
+vsmE+DW3XSemGLuq8gAOnac/TRlKY77zcH3bjLt6bB4mX6rOG2peMTzQcesqHz98
+nN9JfkfSawp9Lcn2MPoLTzQv/2qrachBmpffVgi6iw2jC94AKZvLXu2WyQY=
+-----END ED25519 CERT-----
+master-key-ed25519 dkBCLb7JhPg1t10nphi7qvIADp2nP00ZSmO+83B924w
+platform Tor 0.2.7.6 on Linux
+protocols Link 1 2 Circuit 1
+published 1970-01-01 00:01:00
+fingerprint 3FB0 BD78 27C7 60FE 7F9D D810 FCB1 0322 D63A B4CF
+uptime 0
+bandwidth 1024000 1024000 0
+extra-info-digest 8EB2B502888D4F82A333E68E4490C056C56625FE OShTM78V2T2nVpPqyoiPJ+HMAYWtVx6Gacm9I0A8+SA
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBALe0PFzORJZYzF8mInodyGpn5lf9pIlfaNP+xewsJrZN5O2dI7BKztdL
+N+jh8S5bS7szDZgbDKjN7vHkb1dG5j1rwVsLvS9CvKE7lTqG4jRb8xgjuiCanyN4
+hIVUfzE/ljXaszvg5l/IYcpLG81MRqL8LPFjTU9i9G66Old8xED9AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAMtBWcGn6ynABkT9i9MNIXnrsIix1JkLVWFhA1XmoizyPjaoNhlN22AY
+VwqoE16wH8LINfe96mzNmAYo/DRKfHPGtlwnKLT3dA6lz9paBpym0SldrArBdmnS
+HD5E5uH/tBInlfvanpz7uUwVvwcZ1vGZkde1x53hXX5E1CyNbO4nAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+PXXOCM9kilpK95HsJhdNqhQoCt8TK5MTccIcUC6lPcHKX3IloTFPiglL1pQGnwd/
+0BzCTlG56MvDxVR/DnfPIfKy7g4XloMms7zE42BMkl4iVk+jJBvQjETN/bL4Ch0h
+qzVBSIi6JZuQk75NVoDXs8EPJRkkEPYfnkn7o/TsgpE=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 0
+-----BEGIN ED25519 CERT-----
+AQoAAACpAXZAQi2+yYT4NbddJ6YYu6ryAA6dpz9NGUpjvvNwfduMAEaa569/U3+d
+qGPwZsobCv9yqYy82UVaIvrDHvtMhTTe5UzC704bPujxF3NBREHGerXxjpaXdkWA
+xBUkCb+9RAA=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact shadow-support@cs.umn.edu
+ntor-onion-key GPvJNTjxtAjJdbf5uH/m6cS0MnUpOqxjVaqSpkrOv2E=
+reject *:*
+router-sig-ed25519 8n+x827fD6IQH2xfhl5iHENHgcXluNLyQL3bJklpdhYSemoiJTROhn3YzweWtKxid6noi60ak4F4dLeb0SF0DA
+router-signature
+-----BEGIN SIGNATURE-----
+TnYQTb8ta4B9lc2RJp96R6dzeLuj2b9EiLWeUWnG/LpVLG3YtFvl/Wn3/3tX+ogU
+DOxZcuYGF4y9Ufgf5O8DqQdazXf4JEisXJjtd6T1ZVSS0UT2DJRqZO4n5vBuJm78
+/d5SEdMDp0CtjWXPNeWev6JtZQMUSDTMudLCh7+5+ko=
+-----END SIGNATURE-----
+@downloaded-at 1970-01-01 00:02:54
+@source "11.0.0.8"
+router exit2 11.0.0.8 9111 0 9112
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQAAALRAbgKXC/CHHpyaX4clreMe6beCcAmz+ZAtil8njjSjbN/AQAgBADkxCOY
+/zkCrxVq44H0PxiXHj3bPUG+Qg/dRDKvnovgVJfvb4ihgUbgjwhmzvLyivLIlcim
+qhS6lkX1vMAosApx3Rn77Y5365q1oXdnzu5R1L4zgUZCvyqfWnzRe15u7Ac=
+-----END ED25519 CERT-----
+master-key-ed25519 5MQjmP85Aq8VauOB9D8Ylx492z1BvkIP3UQyr56L4FQ
+platform Tor 0.2.7.6 on Linux
+protocols Link 1 2 Circuit 1
+published 1970-01-01 00:01:00
+fingerprint 4EBB 385C 80A2 CA5D 671E 16F1 C722 FBFB 5F17 6891
+uptime 0
+bandwidth 1024000 1024000 0
+extra-info-digest B571561A9A18ABD3BC58ACE31FFEFDF1DD984CF6 0QexfrQh0znk2s25ncAp3VjYPo79vpPmc6Z/qPCFIzA
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAMB46TlKOQc041Thg+OCo49HbAyYI/wuV+xzbPIDaWdEHKJJd/MA0lqO
+5EWRVT6eABxT5ErWC1GZrpZBzIYE4VrjHDg92l49PV8lvsZsxBgWDoZAniV9mzcK
+SMnEDEmFSHObToKnqv07gFRMLu6jI26RNuVUXC8lUHu61yTG75GTAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBANDqQ+WoyvPoYH51Z0tUt0LT76NmAC4bmV4sRwnprc1+x3ddq5k3ZlV4
+nnKrBEUr30Lx16QDqm9OHdziLOfEjSzp+6w0Xtvy0IShdEtmWojb/Q3cv2lmuZOr
+1qAMPiFcT4xcOfm7FKJvz9RmpSw7pm2zaWy+XwBZCp6EPgedSwmjAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+ADxVHAMIFXjMIQasj9Yjv5gjaLZtfky2SpMTNKq0icAOnsyh+i4zm4ra/K1H2OZm
+jktHjbj8QCyrLT9MjHywlTph0vc3dlK5J+sf16SkEbRdIszJy1qLwf8Gp65OjrRZ
+K/qNUnl7HeKr972zZ0xoGyeQzv8LtvjJOYmgn3/TZEY=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoAAACpAeTEI5j/OQKvFWrjgfQ/GJcePds9Qb5CD91EMq+ei+BUALlXpHtQmfC4
+RkrIzxsX7EBH9n7Y0O9iy0/5lyVA3tRLSfRsGbFhzBUl7oJpqcSRThZj6ryNfAeR
+nG/qid0T+AE=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact shadow-support@cs.umn.edu
+ntor-onion-key wJwH4+QGtnCkzOBV6FjH/ts2Wdf0xxDnPxTAANkz3h0=
+accept *:*
+router-sig-ed25519 f3UacFCYWHAR/Xpv3OftvEcU65sRr7qXGVuPJCXOclxXQav3CojTPsV46KVdQndeLt35Cp6F2HFaF+gQj11vAw
+router-signature
+-----BEGIN SIGNATURE-----
+irTElOeE+ecNJ23WX04YmDmYmRgwzIaIBZ24ukF4RSL0eaa//6JxwJWTpf25iob8
+6deAd198m9NUYKl1jYlHgIZuyb2MdR1s67XvPr0k6EytNpC/8VqDPxdyzGBLox8q
+Ynvr9E3RMSS9BQG5o+tnRCaTzbE6kuVL7NRY/Z2izTY=
+-----END SIGNATURE-----
+@downloaded-at 1970-01-01 00:02:54
+@source "11.0.0.8"
+router relay2 11.0.0.6 9111 0 9112
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQAAALRAW2gUpOsgoaCMcZNwuw4J8aKV3BM9CViXx33rMODn1ocAQAgBADo6qyW
+eZND+iPE89ghQBE0VlibcQI+8vZSy5WVM8dUyZskdIXJESE6YEZg3BdcOiEBl9At
+2jxBcia5Rrg++YLdKK0F8eSofjiraG21IDvlJ65QL1sG7i76wbF+FTmwwgU=
+-----END ED25519 CERT-----
+master-key-ed25519 6OqslnmTQ/ojxPPYIUARNFZYm3ECPvL2UsuVlTPHVMk
+platform Tor 0.2.7.6 on Linux
+protocols Link 1 2 Circuit 1
+published 1970-01-01 00:01:00
+fingerprint FF19 7204 099F A0E5 07FA 46D4 1FED 97D3 337B 4BAA
+uptime 0
+bandwidth 1024000 1024000 0
+extra-info-digest 8297E0B8E4F7FF9BCBFF1373555E29B88758C216 icqcJulsRWU1tPUf7js6FYOA4b6pQ5G0OmQRep91srs
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBANhIFnIt07BI5N/YHoB33Vym2bOYxQiEiOFAnC0OAU6WieCyw2TMgYHW
+tTDyAsWRfqbGC8UAEtb4JDVSZONC5zBWxXJENLhC0oMQXSG9jmhsIUe6Cf/CV6fr
+/yBbK+Fq7BQQNHJLWlkRoDo/wpHT8ws3eaK0q4/2CBs9odZmTwy3AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAJ+UusQi5cj94xqi3gS63ftsxGZATH2kbzG2CpYOT2KD4Jt/Yn6znOaL
+N5/hw4kG8mzP5oXNCUZKbgnxERnIdGKHuVvB+zH63KJWm6CaYkSwIdQyFJTpx7/a
+TUABxouPeDyV2r1JYoKxF5JvBhJLth/BO7r9D135ZJK32l0nLGCdAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+Cl6tzbViisqL+OeVI31nZQFx4X8ZApguEtrhoi/0qkUyf8Ju8I77EFhdRI7DwPPx
+XZWtLXHlnJ671d2PT/XIIpzEE6pMvUfWgg3HJuu88aTJGU396eAth4oz5SEk+PXN
+f27rLzqmhXkBnyuLXJ+p4RAQKWRGoYB8cPnQVuoxfXY=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 0
+-----BEGIN ED25519 CERT-----
+AQoAAACpAejqrJZ5k0P6I8Tz2CFAETRWWJtxAj7y9lLLlZUzx1TJAP8+YaBNgT9K
+j4Zk9stApd8uJwxTRz6D7uPZk2RYYxCdLHGSTjb3qKnfviGSKtBBqLsWDZ45kgnR
+9gVuTIMKpA0=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact shadow-support@cs.umn.edu
+ntor-onion-key BLE0tslPVRT15mf2NZ5dh2RX+HkyVxLNw93ofv1x0V4=
+reject *:*
+router-sig-ed25519 dynGaShIcLci7CZRHxKkGR/c6E2Un5kCR3RfIS81EIJfUyGtMdAgCX/JyNk6LYsqeOuwLP8w5RJqMcYNnKx2CA
+router-signature
+-----BEGIN SIGNATURE-----
+S9Tb4vlvEY+9v5iosB/gM5FYj6CC90bFNicfd8WUnGrUxQ1Z6h00B2O/0X9Xd3zt
+UN/h/pZjRDpjvpNqvEWS+FBkj68B/DDc0QH5wXfhSF0kx/dDym4pATYNxSof2Etc
+6z5RPLaG5w8d/8QUuy1OndTUUAAl5mzehYQZHb9iQEQ=
+-----END SIGNATURE-----
+@downloaded-at 1970-01-01 00:04:03
+@source "11.0.0.6"
+router 4uthority 11.0.0.9 9111 0 9112
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQAAALRAby0/gaL9MygETXgx/e+zv0r2Aj0kbgRyb605mNfw1fmAQAgBABrJZcH
+EEJytUlRnbDJC3LnXAgn4AK/dw/1qSoW3CwqRcFwLBy8JiabwETt0T878NotcvOD
+At6rHdgqfgEIhjpU9XbvLsA4h65+wCn7k8vYK3JdMHIMBF76JoIuW9u/hgQ=
+-----END ED25519 CERT-----
+master-key-ed25519 ayWXBxBCcrVJUZ2wyQty51wIJ+ACv3cP9akqFtwsKkU
+platform Tor 0.2.7.6 on Linux
+protocols Link 1 2 Circuit 1
+published 1970-01-01 00:01:01
+fingerprint A52C A5B5 6C64 D864 F6AE 43E5 6F29 ACBD 5706 DDA1
+uptime 1
+bandwidth 1024000 1024000 0
+extra-info-digest 1609494E3085309E44AD949F8E7824FCBFA15AF2 MBYZSSym/7p/LeK3MzaFyL+YfgfV6nkEkaxGKt7fQZA
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBALKXgY48QW6VcZ7Bie6VHC/m2fmQQT1I5lYSzxdhUyyIiJN9VIn0ZBDt
+T15eosgDJj1XkODrLx3tys/djH694q8oPF4SButhykjdmqLMz00AN5vL/h3/bf5h
+eNGdB8qnN/rdb8SLERgLPX7eoZrtvNEmndR3oDSXLqTy2FkRIMaHAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAMMj/mANiyJvOiPVUulx2RNiyKYJIslDTSw89lInTKcZ1jff27TGekyK
++hXzq0xZ7XA5BAj9kA0vtkjr4NKlgi7zDRTCOwRBIynojdOiaVWiho+y4lxc2adb
+76pLQxpM1+PjNjgoqKEYDWg3qdf7F0e3yoIwr9u2DEVC0FkyQtULAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+UfkItPqfKuN3/s3iu+egxa/P2WTTTvU8Q2Mw5u5aFEcRmqbotSV7U5eBGY2HVXQh
+/av2nR4cqWa/r4EqzhdMO416zWjE1PYi2dbhn7G6H96wdsa9RixLqPijHSK3oQ8g
+fJtuPldP4HTjUdPLzw8yCZyqctUcY3S92BQ1K3alg5k=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoAAACpAWsllwcQQnK1SVGdsMkLcudcCCfgAr93D/WpKhbcLCpFABpBm37WqBWZ
+whm4+vip90Lsh6/VWbqcuBrj44jhi8fqFWxWTzvhhCqfV9KAeF5WlLulpzjtS409
++AF26aLpNQM=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact shadow-support@cs.umn.edu
+ntor-onion-key RkVSUvQ/H3SqNabX1ran7g8ykT70U1Q57MB2DFjiISI=
+reject *:*
+router-sig-ed25519 p+uNU/tMqCNuZK5ZDIzvqpjYPQHJhsCGinVHaacm3z/MGZ3LG4Q8MtyZt3EDaxTYtAymXyspIrad1hIxf4gfDQ
+router-signature
+-----BEGIN SIGNATURE-----
+SBSMQWPlTwfjtLqWYtGEs8Fqoi3vsRzNN0SUfDM3FwGy5wc5lqiCGnJHDmx0S7M7
+wJuJgNNBk9xagM6ZddChCmseMwrK79AZ3IWFQGf2yHr60GO7KJrj8ex6bdxytIzl
+YxhG9kf//Xy/6c+/usu9+wYlUi3xCzE80+klHIofN0I=
+-----END SIGNATURE-----

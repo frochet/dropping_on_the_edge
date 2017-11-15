@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="size" attr.type="string" for="node" id="d5" />
+  <key attr.name="type" attr.type="string" for="node" id="d4" />
+  <key attr.name="protocol" attr.type="string" for="node" id="d3" />
+  <key attr.name="socksproxy" attr.type="string" for="node" id="d2" />
+  <key attr.name="serverport" attr.type="string" for="node" id="d1" />
+  <key attr.name="peers" attr.type="string" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="start">
+      <data key="d0">server1:80,server2:80,server3:80,server4:80,server5:80,server6:80,server7:80,server8:80,server9:80,server10:80,server11:80,server12:80,server13:80,server14:80,server15:80,server16:80,server17:80,server18:80,server19:80,server20:80</data>
+      <data key="d1">8888</data>
+      <data key="d2">localhost:9000</data>
+    </node>
+    <node id="transfer">
+      <data key="d3">tcp</data>
+      <data key="d4">get</data>
+      <data key="d5">5 MiB</data>
+    </node>
+    <edge source="start" target="transfer" />
+    <edge source="transfer" target="start" />
+  </graph>
+</graphml>

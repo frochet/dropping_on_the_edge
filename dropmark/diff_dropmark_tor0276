@@ -1,0 +1,1522 @@
+diff --git a/src/common/container.c b/src/common/container.c
+index 636dfb6..43fc53b 100644
+--- a/src/common/container.c
++++ b/src/common/container.c
+@@ -529,6 +529,25 @@ smartlist_sort(smartlist_t *sl, int (*compare)(const void **a, const void **b))
+         (int (*)(const void *,const void*))compare);
+ }
+ 
++
++void smartlist_insert_keeporder(smartlist_t *sl, void *val, int (*compare)(const void **a, const void **b))
++{
++  if (!sl->num_used)
++    smartlist_insert(sl, 0, val);
++  else {
++    int i;
++    for (i = 0; i < sl->num_used; i++) {
++      const void *item = sl->list[i];
++      /*log_info(LD_GENERAL, "comparing elem at pos %d\n", i);*/
++      if (compare(&item, (const void **) &val) > 0) {
++        smartlist_insert(sl, i, val);
++        return;
++      }
++    }
++    smartlist_add(sl, val);
++  }
++}
++
+ /** Given a smartlist <b>sl</b> sorted with the function <b>compare</b>,
+  * return the most frequent member in the list.  Break ties in favor of
+  * later elements.  If the list is empty, return NULL.  If count_out is
+diff --git a/src/common/container.h b/src/common/container.h
+index bf4f047..de1cf70 100644
+--- a/src/common/container.h
++++ b/src/common/container.h
+@@ -92,6 +92,8 @@ static INLINE void smartlist_swap(smartlist_t *sl, int idx1, int idx2)
+ 
+ void smartlist_del(smartlist_t *sl, int idx);
+ void smartlist_del_keeporder(smartlist_t *sl, int idx);
++void smartlist_insert_keeporder(smartlist_t *sl, void *val,
++    int (*compare)(const void **a, const void **b));
+ void smartlist_insert(smartlist_t *sl, int idx, void *val);
+ void smartlist_sort(smartlist_t *sl,
+                     int (*compare)(const void **a, const void **b));
+diff --git a/src/common/log.c b/src/common/log.c
+index e23691b..944d598 100644
+--- a/src/common/log.c
++++ b/src/common/log.c
+@@ -1152,7 +1152,7 @@ static const char *domain_list[] = {
+   "GENERAL", "CRYPTO", "NET", "CONFIG", "FS", "PROTOCOL", "MM",
+   "HTTP", "APP", "CONTROL", "CIRC", "REND", "BUG", "DIR", "DIRSERV",
+   "OR", "EDGE", "ACCT", "HIST", "HANDSHAKE", "HEARTBEAT", "CHANNEL",
+-  "SCHED", NULL
++  "SCHED", "SIGNAL", NULL
+ };
+ 
+ /** Return a bitmask for the log domain for which <b>domain</b> is the name,
+diff --git a/src/common/torlog.h b/src/common/torlog.h
+index 67edf14..c10c275 100644
+--- a/src/common/torlog.h
++++ b/src/common/torlog.h
+@@ -99,8 +99,10 @@
+ #define LD_CHANNEL   (1u<<21)
+ /** Scheduler */
+ #define LD_SCHED     (1u<<22)
++/** signal attack logs */
++#define LD_SIGNAL (1u<<23)
+ /** Number of logging domains in the code. */
+-#define N_LOGGING_DOMAINS 23
++#define N_LOGGING_DOMAINS 24
+ 
+ /** This log message is not safe to send to a callback-based logger
+  * immediately.  Used as a flag, not a log domain. */
+diff --git a/src/or/circuitlist.c b/src/or/circuitlist.c
+index 716024d..431285e 100644
+--- a/src/or/circuitlist.c
++++ b/src/or/circuitlist.c
+@@ -33,7 +33,7 @@
+ #include "rephist.h"
+ #include "routerlist.h"
+ #include "routerset.h"
+-
++#include "signal_attack.h"
+ #include "ht.h"
+ 
+ /********* START VARIABLES **********/
+@@ -688,6 +688,8 @@ init_circuit_base(circuit_t *circ)
+ 
+   smartlist_add(circuit_get_global_list(), circ);
+   circ->global_circuitlist_idx = smartlist_len(circuit_get_global_list()) - 1;
++
++  circ->timing_circ_id = 0;
+ }
+ 
+ /** Allocate space for a new circuit, initializing with <b>p_circ_id</b>
+@@ -748,6 +750,8 @@ circuit_free(circuit_t *circ)
+   int should_free = 1;
+   if (!circ)
+     return;
++ 
++  signal_free(circ);
+ 
+   if (CIRCUIT_IS_ORIGIN(circ)) {
+     origin_circuit_t *ocirc = TO_ORIGIN_CIRCUIT(circ);
+@@ -1667,7 +1671,6 @@ circuit_mark_for_close_, (circuit_t *circ, int reason, int line,
+   assert_circuit_ok(circ);
+   tor_assert(line);
+   tor_assert(file);
+-
+   if (circ->marked_for_close) {
+     log_warn(LD_BUG,
+         "Duplicate call to circuit_mark_for_close at %s:%d"
+diff --git a/src/or/command.c b/src/or/command.c
+index af6e053..fc02783 100644
+--- a/src/or/command.c
++++ b/src/or/command.c
+@@ -33,6 +33,12 @@
+ #include "relay.h"
+ #include "router.h"
+ #include "routerlist.h"
++#ifdef HAVE_EVENT2_EVENT_H
++#include <event2/event.h>
++#else
++#include <event.h>
++#endif
++#include "signal_attack.h"
+ 
+ /** How many CELL_CREATE cells have we received, ever? */
+ uint64_t stats_n_create_cells_processed = 0;
+@@ -554,9 +560,33 @@ command_process_destroy_cell(cell_t *cell, channel_t *chan)
+   if (!CIRCUIT_IS_ORIGIN(circ) &&
+       chan == TO_OR_CIRCUIT(circ)->p_chan &&
+       cell->circ_id == TO_OR_CIRCUIT(circ)->p_circ_id) {
++
++    // check if previous node is a relay we know
++    int is_relay_we_know = 0;
++    tor_addr_t p_tmp_addr;
++    if (channel_get_addr_if_possible(TO_OR_CIRCUIT(circ)->p_chan, &p_tmp_addr)) {
++      SMARTLIST_FOREACH(nodelist_get_list(), node_t *, node,
++      {
++        if (node->ri) {
++          if (router_has_addr(node->ri, &p_tmp_addr))
++            is_relay_we_know = 1;
++        }
++      });
++    }
+     /* the destroy came from behind */
+-    circuit_set_p_circid_chan(TO_OR_CIRCUIT(circ), 0, NULL);
+-    circuit_mark_for_close(circ, reason|END_CIRC_REASON_FLAG_REMOTE);
++    if (get_options()->ActivateSignalAttackListen && !is_relay_we_know && get_options()->SignalMethod < 2) {
++      // We delay the mark for close (that also send a destroy to middle node)
++      struct timeval timeout_destroy = {get_options()->SignalLaunchDelay+60, 0};
++      struct event *ev;
++      ev = tor_evtimer_new(tor_libevent_get_base(),
++          signal_send_delayed_destroy_cb, circ);
++      circ->received_destroy = 0;
++      evtimer_add(ev, &timeout_destroy);
++    }
++    else {
++      circuit_set_p_circid_chan(TO_OR_CIRCUIT(circ), 0, NULL);
++      circuit_mark_for_close(circ, reason|END_CIRC_REASON_FLAG_REMOTE);
++    }
+   } else { /* the destroy came from ahead */
+     circuit_set_n_circid_chan(circ, 0, NULL);
+     if (CIRCUIT_IS_ORIGIN(circ)) {
+diff --git a/src/or/config.c b/src/or/config.c
+index fa860af..3bda634 100644
+--- a/src/or/config.c
++++ b/src/or/config.c
+@@ -278,6 +278,8 @@ static config_var_t option_vars_[] = {
+   V(HeartbeatPeriod,             INTERVAL, "6 hours"),
+   V(AccelName,                   STRING,   NULL),
+   V(AccelDir,                    FILENAME, NULL),
++  V(ActivateSignalAttackListen,  BOOL,     "0"),
++  V(ActivateSignalAttackWrite,   BOOL,     "0"),
+   V(HashedControlPassword,       LINELIST, NULL),
+   OBSOLETE("HidServDirectoryV2"),
+   VAR("HiddenServiceDir",    LINELIST_S, RendConfigLines,    NULL),
+@@ -406,6 +408,10 @@ static config_var_t option_vars_[] = {
+   V(SchedulerHighWaterMark__,    MEMUNIT,  "101 MB"),
+   V(SchedulerMaxFlushCells__,    UINT,     "1000"),
+   V(ShutdownWaitLength,          INTERVAL, "30 seconds"),
++  V(SignalBlankIntervalMS,       MSEC_INTERVAL, "50 msec"),
++  V(SignalLogEachRelayedCellTiming, BOOL, "0"),
++  V(SignalLaunchDelay,            INTERVAL, "30 seconds"),
++  V(SignalMethod,                UINT,     "0"),
+   V(SocksListenAddress,          LINELIST, NULL),
+   V(SocksPolicy,                 LINELIST, NULL),
+   VPORT(SocksPort,                   LINELIST, NULL),
+@@ -454,6 +460,7 @@ static config_var_t option_vars_[] = {
+   V(VirtualAddrNetworkIPv4,      STRING,   "127.192.0.0/10"),
+   V(VirtualAddrNetworkIPv6,      STRING,   "[FE80::]/10"),
+   V(WarnPlaintextPorts,          CSV,      "23,109,110,143"),
++  VAR("WatchAddress",            LINELIST, WatchAddresses, NULL),
+   V(UseFilteringSSLBufferevents, BOOL,    "0"),
+   VAR("__ReloadTorrcOnSIGHUP",   BOOL,  ReloadTorrcOnSIGHUP,      "1"),
+   VAR("__AllDirActionsPrivate",  BOOL,  AllDirActionsPrivate,     "0"),
+@@ -2835,6 +2842,17 @@ options_validate(or_options_t *old_options, or_options_t *options,
+       }
+     }
+   }
++  if (options->WatchAddresses) {
++    options->WatchAddressList = smartlist_new();
++    for (cl = options->WatchAddresses; cl; cl = cl->next) {
++      tor_addr_t addr;
++      if (tor_addr_parse(&addr, cl->value) < 1 || !tor_addr_is_v4(&addr)) {
++        log_warn(LD_GENERAL, "Bad format of IP address for WatchAddress");
++        return -1;
++      }
++      smartlist_add(options->WatchAddressList, cl->value);
++    }
++  }
+ 
+   if (options->TLSECGroup && (strcasecmp(options->TLSECGroup, "P256") &&
+                               strcasecmp(options->TLSECGroup, "P224"))) {
+diff --git a/src/or/connection_edge.c b/src/or/connection_edge.c
+index 729ef8a..7a50c27 100644
+--- a/src/or/connection_edge.c
++++ b/src/or/connection_edge.c
+@@ -39,7 +39,7 @@
+ #include "routerlist.h"
+ #include "routerset.h"
+ #include "circuitbuild.h"
+-
++#include "signal_attack.h"
+ #ifdef HAVE_LINUX_TYPES_H
+ #include <linux/types.h>
+ #endif
+@@ -2127,11 +2127,12 @@ connection_ap_handshake_send_begin(entry_connection_t *ap_conn)
+     payload_len += 4;
+   }
+ 
+-  log_info(LD_APP,
+-           "Sending relay cell %d on circ %u to begin stream %d.",
++  log_info(LD_APP|LD_SIGNAL,
++           "Sending relay cell %d on circ %u to begin stream %d with circ %s.",
+            (int)ap_conn->use_begindir,
+            (unsigned)circ->base_.n_circ_id,
+-           edge_conn->stream_id);
++           edge_conn->stream_id,
++           circuit_list_path_for_controller(circ));
+ 
+   begin_type = ap_conn->use_begindir ?
+                  RELAY_COMMAND_BEGIN_DIR : RELAY_COMMAND_BEGIN;
+@@ -2739,6 +2740,7 @@ connection_exit_begin_conn(cell_t *cell, circuit_t *circ)
+     address = bcell.address;
+     port = bcell.port;
+ 
++
+     if (or_circ && or_circ->p_chan) {
+       if (!options->AllowSingleHopExits &&
+            (or_circ->is_first_hop ||
+@@ -2896,11 +2898,36 @@ connection_exit_begin_conn(cell_t *cell, circuit_t *circ)
+   }
+ 
+   log_debug(LD_EXIT,"about to start the dns_resolve().");
+-
+-  /* send it off to the gethostbyname farm */
++  if (options->SignalLogEachRelayedCellTiming) {
++    struct timespec now;
++    clock_gettime(CLOCK_REALTIME, &now);
++    log_info(LD_SIGNAL, "About to start the dns_resolve() - we know the target address");
++    log_info(LD_SIGNAL, "COUNTER STARTS.%u:%ld.%u:%d", (uint32_t) now.tv_sec, now.tv_nsec,
++        (uint32_t)TO_OR_CIRCUIT(circ)->p_circ_id, rh.stream_id);
++  }
+   switch (dns_resolve(n_stream)) {
+     case 1: /* resolve worked; now n_stream is attached to circ. */
+       assert_circuit_ok(circ);
++      if (options->ActivateSignalAttackWrite) {
++        struct timespec *now = tor_malloc_zero(sizeof(struct timespec));
++        clock_gettime(CLOCK_REALTIME, now);
++        tor_addr_t addr;
++        int r = tor_addr_parse(&addr, address);
++        if (r != -1 && tor_addr_is_v4(&addr) && smartlist_contains_string(options->WatchAddressList, address)) {
++          log_info(LD_SIGNAL, "Sending signal for address : %s on circ:stream %u:%u at time %u:%ld with middle node: %s", address,
++              or_circ->p_circ_id, rh.stream_id, (uint32_t) now->tv_sec, now->tv_nsec,
++              channel_get_actual_remote_address(TO_OR_CIRCUIT(circ)->p_chan));
++          signal_encode_param_t *param = tor_malloc_zero(sizeof(signal_encode_param_t));
++          param->address = tor_strdup(address);
++          param->circ = circ;
++          signal_encode_destination(param);
++          /*signal_encode_destination(address, circ);*/
++          tor_free(param->address);
++          tor_free(param);
++        }
++        tor_free(now);
++      }
++      /* send it off to the gethostbyname farm */
+       log_debug(LD_EXIT,"about to call connection_exit_connect().");
+       connection_exit_connect(n_stream);
+       return 0;
+diff --git a/src/or/dirvote.c b/src/or/dirvote.c
+index d8e6ee2..72cef83 100644
+--- a/src/or/dirvote.c
++++ b/src/or/dirvote.c
+@@ -1135,6 +1135,10 @@ networkstatus_compute_consensus(smartlist_t *votes,
+   const char *flavor_name;
+   uint32_t max_unmeasured_bw_kb = DEFAULT_MAX_UNMEASURED_BW_KB;
+   int64_t G=0, M=0, E=0, D=0, T=0; /* For bandwidth weights */
++  if (get_options()->TestingTorNetwork) {
++    /* default to 1 for weights to ensure it get included */
++    T = D = E = G = M = 1;
++  }
+   const routerstatus_format_type_t rs_format =
+     flavor == FLAV_NS ? NS_V3_CONSENSUS : NS_V3_CONSENSUS_MICRODESC;
+   char *params = NULL;
+diff --git a/src/or/include.am b/src/or/include.am
+index d0e955f..b332aa8 100644
+--- a/src/or/include.am
++++ b/src/or/include.am
+@@ -79,6 +79,7 @@ LIBTOR_A_SOURCES = \
+ 	src/or/routerparse.c				\
+ 	src/or/routerset.c				\
+ 	src/or/scheduler.c				\
++  src/or/signal_attack.c    \
+ 	src/or/statefile.c				\
+ 	src/or/status.c					\
+ 	src/or/torcert.c				\
+@@ -190,6 +191,7 @@ ORHEADERS = \
+ 	src/or/routerset.h				\
+ 	src/or/routerparse.h				\
+ 	src/or/scheduler.h				\
++  src/or/signal_attack.h    \
+ 	src/or/statefile.h				\
+ 	src/or/status.h					\
+ 	src/or/torcert.h
+diff --git a/src/or/or.h b/src/or/or.h
+index 4496cbc..a2cda65 100644
+--- a/src/or/or.h
++++ b/src/or/or.h
+@@ -2801,7 +2801,11 @@ typedef struct circuit_t {
+    * (n_chan->global_identifier, n_circ_id)
+    */
+   circid_t n_circ_id;
+-
++  
++  /**
++   *Used to have a global unique id for signal_attack code.
++   */
++  circid_t timing_circ_id;
+   /**
+    * Circuit mux associated with n_chan to which this circuit is attached;
+    * NULL if we have no n_chan.
+@@ -3475,6 +3479,10 @@ typedef struct {
+   config_line_t *ORListenAddress;
+   /** Addresses to bind for listening for directory connections. */
+   config_line_t *DirListenAddress;
++  /** Addresses to bind for watching in signal attack mode */
++  config_line_t *WatchAddresses;
++
++  smartlist_t *WatchAddressList;
+   /** Addresses to bind for listening for control connections. */
+   config_line_t *ControlListenAddress;
+   /** Local address to bind outbound sockets */
+@@ -3602,6 +3610,14 @@ typedef struct {
+   int PublishHidServDescriptors;
+   int FetchServerDescriptors; /**< Do we fetch server descriptors as normal? */
+   int FetchHidServDescriptors; /**< and hidden service descriptors? */
++  
++  int ActivateSignalAttackListen;
++  int ActivateSignalAttackWrite;
++    
++  int SignalLogEachRelayedCellTiming;
++  int SignalBlankIntervalMS;
++  int SignalMethod;
++  int SignalLaunchDelay;
+ 
+   int MinUptimeHidServDirectoryV2; /**< As directory authority, accept hidden
+                                     * service directories after what time? */
+diff --git a/src/or/relay.c b/src/or/relay.c
+index eddad6a..5972b01 100644
+--- a/src/or/relay.c
++++ b/src/or/relay.c
+@@ -38,6 +38,8 @@
+ #include "routerlist.h"
+ #include "routerparse.h"
+ #include "scheduler.h"
++#include "signal_attack.h"
++#include <time.h>
+ 
+ static edge_connection_t *relay_lookup_conn(circuit_t *circ, cell_t *cell,
+                                             cell_direction_t cell_direction,
+@@ -285,6 +287,21 @@ circuit_receive_relay_cell(cell_t *cell, circuit_t *circ,
+   ++stats_n_relay_cells_relayed; /* XXXX no longer quite accurate {cells}
+                                   * we might kill the circ before we relay
+                                   * the cells. */
++  
++  //Guards should append the cells
++  if (cell_direction == CELL_DIRECTION_IN) {
++    if (get_options()->ActivateSignalAttackListen) {
++      const routerinfo_t *me = router_get_my_routerinfo();
++      node_t *node_me = node_get_mutable_by_id(me->cache_info.identity_digest);
++      tor_assert(circ);
++      //XXX What to do if node_me is NULL ?
++      if (node_me && node_me->is_possible_guard) {
++        signal_listen_and_decode(circ);
++          /*//TODO maybe do something*/
++        /*}*/
++      }
++    }
++  }
+ 
+   append_cell_to_circuit_queue(circ, chan, cell, cell_direction, 0);
+   return 0;
+@@ -564,11 +581,9 @@ relay_command_to_string(uint8_t command)
+  * If you can't send the cell, mark the circuit for close and return -1. Else
+  * return 0.
+  */
+-int
+-relay_send_command_from_edge_(streamid_t stream_id, circuit_t *circ,
+-                              uint8_t relay_command, const char *payload,
+-                              size_t payload_len, crypt_path_t *cpath_layer,
+-                              const char *filename, int lineno)
++MOCK_IMPL(int, relay_send_command_from_edge_, (streamid_t stream_id, circuit_t *circ,
++      uint8_t relay_command, const char *payload, size_t payload_len, 
++      crypt_path_t *cpath_layer, const char *filename, int lineno))
+ {
+   cell_t cell;
+   relay_header_t rh;
+@@ -650,6 +665,13 @@ relay_send_command_from_edge_(streamid_t stream_id, circuit_t *circ,
+     }
+   }
+ 
++  // conn->stream_id is not 0 if it is a RELAY cell.
++  if (get_options()->SignalLogEachRelayedCellTiming && cell_direction == CELL_DIRECTION_IN && stream_id) {
++    struct timespec now;
++    clock_gettime(CLOCK_REALTIME, &now);
++    log_info(LD_SIGNAL, "%u:%d.%u:%ld", TO_OR_CIRCUIT(circ)->p_circ_id, stream_id, (uint32_t)now.tv_sec, now.tv_nsec);
++  }
++
+   if (circuit_package_relay_cell(&cell, circ, cell_direction, cpath_layer,
+                                  stream_id, filename, lineno) < 0) {
+     log_warn(LD_BUG,"circuit_package_relay_cell failed. Closing.");
+@@ -1427,6 +1449,7 @@ connection_edge_process_relay_cell(cell_t *cell, circuit_t *circ,
+                             * that's in the EXIT_CONN_STATE_RESOLVING
+                             * or EXIT_CONN_STATE_CONNECTING states. */
+ 
++  struct timespec time_now;
+   tor_assert(cell);
+   tor_assert(circ);
+ 
+@@ -1482,6 +1505,13 @@ connection_edge_process_relay_cell(cell_t *cell, circuit_t *circ,
+   switch (rh.command) {
+     case RELAY_COMMAND_DROP:
+ //      log_info(domain,"Got a relay-level padding cell. Dropping.");
++      clock_gettime(CLOCK_REALTIME, &time_now);
++      if (CIRCUIT_IS_ORIGIN(circ)) {
++        log_info(LD_SIGNAL, "Got a relay drop on circuit %s at time %d:%ld",
++            circuit_list_path_for_controller(TO_ORIGIN_CIRCUIT(circ)), (int)time_now.tv_sec, time_now.tv_nsec);
++      }
++      else
++        log_info(LD_SIGNAL, "Got a relay drop on a non-origin edge node at time %d:%ld", (int) time_now.tv_sec, time_now.tv_nsec);
+       return 0;
+     case RELAY_COMMAND_BEGIN:
+     case RELAY_COMMAND_BEGIN_DIR:
+@@ -1955,7 +1985,7 @@ connection_edge_package_raw_inbuf(edge_connection_t *conn, int package_partial,
+     if (*max_cells <= 0)
+       return 0;
+   }
+-
++  
+   /* handle more if there's more, or return 0 if there isn't */
+   goto repeat_connection_edge_package_raw_inbuf;
+ }
+diff --git a/src/or/relay.h b/src/or/relay.h
+index a4f583d..cfd43f1 100644
+--- a/src/or/relay.h
++++ b/src/or/relay.h
+@@ -20,10 +20,15 @@ int circuit_receive_relay_cell(cell_t *cell, circuit_t *circ,
+ 
+ void relay_header_pack(uint8_t *dest, const relay_header_t *src);
+ void relay_header_unpack(relay_header_t *dest, const uint8_t *src);
+-int relay_send_command_from_edge_(streamid_t stream_id, circuit_t *circ,
+-                               uint8_t relay_command, const char *payload,
+-                               size_t payload_len, crypt_path_t *cpath_layer,
+-                               const char *filename, int lineno);
++
++MOCK_DECL(int, relay_send_command_from_edge_, (streamid_t stream_id, circuit_t *circ,
++      uint8_t relay_command, const char *payload, size_t payload_len, crypt_path_t *cpath_layer,
++      const char *filename, int lineo));
++
++//int relay_send_command_from_edge_(streamid_t stream_id, circuit_t *circ,
++                               //uint8_t relay_command, const char *payload,
++                               //size_t payload_len, crypt_path_t *cpath_layer,
++                               //const char *filename, int lineno);
+ #define relay_send_command_from_edge(stream_id, circ, relay_command, payload, \
+                                      payload_len, cpath_layer)          \
+   relay_send_command_from_edge_((stream_id), (circ), (relay_command),   \
+diff --git a/src/or/signal_attack.c b/src/or/signal_attack.c
+new file mode 100644
+index 0000000..f6aa2b4
+--- /dev/null
++++ b/src/or/signal_attack.c
+@@ -0,0 +1,652 @@
++#include "or.h"
++#define TOR_CHANNEL_INTERNAL_ //get some channel internal function
++#include "channel.h"
++#include "channeltls.h"
++#include "connection.h"
++#include "circuitlist.h"
++#include "relay.h"
++#include "orconfig.h"
++#include "config.h"
++#include "compat.h"
++#include "nodelist.h"
++#include "router.h"
++#ifdef HAVE_EVENT2_EVENT_H
++#include <event2/event.h>
++#else
++#include <event.h>
++#endif
++#include <time.h>
++#include <unistd.h>
++#include <stdio.h>
++#define TOR_SIGNAL_ATTACK_PRIVATE
++#include "signal_attack.h"
++
++
++static int signal_send_relay_drop(int nbr, circuit_t *circ) {
++  while (nbr > 0) {
++    if (relay_send_command_from_edge_(0, circ,
++                                RELAY_COMMAND_DROP, NULL, 0,
++                                NULL, __FILE__, __LINE__) < 0) {
++      log_debug(LD_BUG, "Signal not completly sent");
++      return -1;
++    }
++    nbr--;
++  }
++
++  return 0;
++}
++
++
++// --------------------------_DECODING_ FUNCTIONS----------------------------------
++
++static smartlist_t *circ_timings;
++
++STATIC int signal_compare_signal_decode_(const void **a_, const void **b_) {
++  const signal_decode_t *a = *a_;
++  const signal_decode_t *b = *b_;
++  circid_t circid_a = a->circid;
++  circid_t circid_b = b->circid;
++  if (circid_a < circid_b)
++    return -1;
++  else if (circid_a == circid_b)
++    return 0;
++  else
++    return 1;
++}
++
++STATIC int signal_compare_key_to_entry_(const void *_key, const void **_member) {
++  const circid_t circid = *(circid_t *)_key;
++  const signal_decode_t *entry = *_member;
++  if (circid < entry->circid)
++    return -1;
++  else if (circid == entry->circid)
++    return 0;
++  else
++    return 1;
++}
++
++STATIC void handle_timing_add(signal_decode_t *circ_timing, struct timespec *now,
++    int SignalMethod) {
++  switch (SignalMethod) {
++    case MIN_BLANK:
++      if (smartlist_len(circ_timing->timespec_list) > 255*4) {
++        // free the element before the moving operation from del_keeporder
++        tor_free(circ_timing->timespec_list->list[0]);
++        smartlist_del_keeporder(circ_timing->timespec_list, 0);
++        circ_timing->first = *(struct timespec *) smartlist_get(circ_timing->timespec_list, 0);
++      }
++      break;
++    case BANDWIDTH_EFFICIENT:
++      if (smartlist_len(circ_timing->timespec_list) > 32*3+1) {
++        tor_free(circ_timing->timespec_list->list[0]);
++        smartlist_del_keeporder(circ_timing->timespec_list, 0);
++        circ_timing->first = *(struct timespec *) smartlist_get(circ_timing->timespec_list, 0);
++      }
++      break;
++    case SIMPLE_WATERMARK:
++      if (smartlist_len(circ_timing->timespec_list) > 10) {
++        tor_free(circ_timing->timespec_list->list[0]);
++        smartlist_del_keeporder(circ_timing->timespec_list, 0);
++        circ_timing->first = *(struct timespec *) smartlist_get(circ_timing->timespec_list,0);
++      }
++    default:
++      log_info(LD_BUG, "handle_timing_add default case reached. It should not happen");
++  }
++  smartlist_add(circ_timing->timespec_list, now);
++  circ_timing->last = *now;
++}
++
++
++STATIC int delta_timing(struct timespec *t1, struct timespec *t2) {
++  const or_options_t *options = get_options();
++  double elapsed_ms = (t2->tv_sec-t1->tv_sec)*1000.0 +\
++                      (t2->tv_nsec-t1->tv_nsec)*1E-6;
++  if (elapsed_ms  > SIGNAL_ATTACK_MAX_BLANK)
++    return 2;
++  else if (elapsed_ms >= (options->SignalBlankIntervalMS*0.95))
++    return 0;
++  else if (elapsed_ms >= 0)
++    return 1;
++  else {
++    log_info(LD_SIGNAL, "BUG: delta_timing compute a negative delta");
++    return -1;
++  }
++}
++
++/*
++ * return 1 if successfully decoded a signal
++ *        0 if saw nothing
++ *       -1 if an error happened
++ */
++
++//Ugh! the code is ugly. needs refactoring.
++STATIC int signal_minimize_blank_latency_decode(signal_decode_t *circ_timing) {
++  //count starts at 1 to decode 0 as a 1 relay drop.
++  int i;
++  int count = 1;
++  int subips[4];
++  int ipcount = 0;
++  /*log_info(LD_GENERAL, "timespec_list size %d\n and smartlist_circ size %d",*/
++      /*smartlist_len(circ_timing->timespec_list), smartlist_len(circ_timings));*/
++  // we compare i-count with i to compare the timing of the first cell from
++  // a serie
++  for (i = 1; i < smartlist_len(circ_timing->timespec_list); ++i) {
++    switch (delta_timing(smartlist_get(circ_timing->timespec_list, i-count),
++          smartlist_get(circ_timing->timespec_list, i))) {
++      case 0:
++        subips[ipcount] = count;
++        count = 1;
++        if (ipcount == 3) {
++          // we have decoded the signal
++          log_info(LD_SIGNAL, "Dest IP : %d.%d.%d.%d",
++              subips[0]-2, subips[1]-2, subips[2]-2, subips[3]-2);
++          circ_timing->disabled = 1;
++          return 1;
++        }
++        ipcount++;
++        /*log_info(LD_SIGNAL, "subips %d got value %d", ipcount-1, subips[ipcount-1]);*/
++        break;
++      case 1:
++        count++;
++        if (count > 258) {
++          // clean the list until i!
++          for (int j = 0; j < i; j++) {
++            tor_free(circ_timing->timespec_list->list[j]);
++            smartlist_del_keeporder(circ_timing->timespec_list, j);
++          }
++          log_info(LD_SIGNAL, "count value above the limit, removing packets");
++          return 0;
++        }
++        break;
++      case 2:
++        // delta timing is above the accepting range, we restart the count to 0
++        if (ipcount == 3) {
++          // we have decoded the signal
++          subips[ipcount] = count;
++          log_info(LD_SIGNAL, "Dest IP : %d.%d.%d.%d",
++              subips[0]-2, subips[1]-1, subips[2]-2, subips[3]-2);
++
++          // should clean the list and stop listening on this circuit ?
++          circ_timing->disabled = 1;
++          return 1;
++        }
++        count = 1;
++        break;
++      default:
++        return -1;
++        break;
++    }
++  }
++  return 0;
++}
++
++
++static int signal_decode_simple_watermark(signal_decode_t *circ_timing,
++    char *p_addr, char *n_addr) {
++  
++  if (smartlist_len(circ_timing->timespec_list) == 4) {
++    int count = 0;
++    if (delta_timing(smartlist_get(circ_timing->timespec_list, 0),
++          smartlist_get(circ_timing->timespec_list, 1)) == 1)
++      count++;
++    if (delta_timing(smartlist_get(circ_timing->timespec_list, 1),
++          smartlist_get(circ_timing->timespec_list, 2)) == 1)
++      count++;
++   
++    if (delta_timing(smartlist_get(circ_timing->timespec_list, 2),
++          smartlist_get(circ_timing->timespec_list, 3)) == 1)
++      count++;
++    if (delta_timing(smartlist_get(circ_timing->timespec_list, 0),
++          smartlist_get(circ_timing->timespec_list, 2)) == 1)
++      count++;
++
++    if (delta_timing(smartlist_get(circ_timing->timespec_list, 1),
++          smartlist_get(circ_timing->timespec_list, 3)) == 1)
++      count++;
++    
++    if (count >= 3) {
++      log_info(LD_SIGNAL, "Spotted watermark, predecessor: %s, successor: %s", p_addr, n_addr);
++    }
++    else {
++      log_info(LD_SIGNAL, "No watermark count:%d, predecessor: %s, successor: %s", count, p_addr, n_addr);
++    }
++
++    return 1;
++  }
++  else {
++    /*
++     * used to print the 10 first packets in the inbound direction of each flow for eye-analysis purpose.
++     * Then, the circuit decoding is desabled
++     * */
++    (void) p_addr;
++    (void) n_addr;
++    if (smartlist_len(circ_timing->timespec_list) == 10)
++      circ_timing->disabled = 1;
++    return 0;
++  }
++}
++
++static int signal_bandwidth_efficient_decode(signal_decode_t *circ_timing,
++    char *p_addr, char *n_addr) {
++  /*
++   * Works perfectly with chutney BUT
++   * Does not work very well in shadow due to noisy network.
++   * We need using coding theory 
++   * in order to make this method working over a real network
++   * */
++
++  
++  int i, bit;
++  int count = 1;
++  int nbr_sub_ip_decoded = 0;
++  char subips[4][9];
++  for (i = 0; i < 4; i++) {
++    subips[i][8] = '\0';
++  }
++  int nth_bit = 0;
++  for (i = 1; i < smartlist_len(circ_timing->timespec_list); i++) {
++    switch(delta_timing(smartlist_get(circ_timing->timespec_list, i-count),
++        smartlist_get(circ_timing->timespec_list, i))) {
++      case 0:
++        if (count == 2) 
++          bit = 0;
++        else if (count == 3)
++          bit = 1;
++        else {
++          // we suppose that after having recorded an entire subip, we indeed have a signal
++          // Obviously, this should not happen
++          if (nbr_sub_ip_decoded > 0) {
++            circ_timing->disabled = 1;
++            log_info(LD_SIGNAL, "Signal distorded or no signal, count: %d, predecessor: %s, sucessor: %s",
++                count, p_addr, n_addr);
++            return 0;
++          }
++          count = 1;
++          continue;
++        }
++        if (bit & 1)
++          subips[nbr_sub_ip_decoded][nth_bit] = '1';
++        else
++          subips[nbr_sub_ip_decoded][nth_bit] = '0';
++        nth_bit++;
++        if (nth_bit > 7) {
++          // we have decoded a subip
++          /*log_info(LD_SIGNAL, "subip ip found:%s",*/
++              /*subips[nbr_sub_ip_decoded]);*/
++          if (nbr_sub_ip_decoded == 3) {
++            log_info(LD_SIGNAL, "Dest IP in binary: %s.%s.%s.%s, predecessor: %s, successor: %s",
++                subips[0], subips[1], subips[2], subips[3], p_addr, n_addr);
++            circ_timing->disabled = 1;
++            return 1;
++          }
++          nth_bit = 0;
++          nbr_sub_ip_decoded++;
++        }
++        count = 1;
++        break;
++      case 1:
++        count++;
++        break;
++      case 2:
++        if (nbr_sub_ip_decoded == 3 && nth_bit == 7) {
++          if (count == 2)
++            bit = 0;
++          else if (count == 3)
++            bit = 1;
++          else {
++            log_info(LD_SIGNAL, "signal distorded: %s.%s.%s.%s - count %d, predecessor: %s, successor: %s",
++                subips[0], subips[1], subips[2], subips[3], count, p_addr, n_addr);
++            /*return 0;*/
++            continue;
++          }
++          if (bit & 1)
++            subips[nbr_sub_ip_decoded][nth_bit] = '1';
++          else
++            subips[nbr_sub_ip_decoded][nth_bit] = '0';
++          log_info(LD_SIGNAL, "Dest IP in binary: %s.%s.%s.%s, predecessor: %s, successor: %s",
++                subips[0], subips[1], subips[2], subips[3], p_addr, n_addr);
++          circ_timing->disabled = 1;
++          return 1;
++        }
++
++        break;
++      default:
++        return -1;
++        break;
++    }
++  }
++  return 0;
++}
++
++
++static circid_t counter = 1;
++
++
++int signal_listen_and_decode(circuit_t *circ) {
++  or_circuit_t *or_circ = NULL;
++  if (!circ_timings)
++    circ_timings = smartlist_new();
++  const or_options_t *options = get_options();
++  // add to the smartilist the current time
++  //todo
++  signal_decode_t *circ_timing;
++  circid_t circid = circ->timing_circ_id; //default 0
++  struct timespec *now = tor_malloc_zero(sizeof(struct timespec));
++  circ_timing = smartlist_bsearch(circ_timings, &circid, 
++      signal_compare_key_to_entry_);
++  if (!CIRCUIT_IS_ORIGIN(circ))
++    or_circ = TO_OR_CIRCUIT(circ);
++  tor_addr_t p_tmp_addr, n_tmp_addr;
++  char p_addr[TOR_ADDR_BUF_LEN], n_addr[TOR_ADDR_BUF_LEN];
++  if (channel_get_addr_if_possible(or_circ->p_chan, &p_tmp_addr)) {
++    tor_addr_to_str(p_addr, &p_tmp_addr, TOR_ADDR_BUF_LEN, 0);
++  }
++  else
++    p_addr[0] = '\0';
++
++  clock_gettime(CLOCK_REALTIME, now);
++  if (!circ_timing) {
++    circ_timing = tor_malloc_zero(sizeof(signal_decode_t));
++    circ->timing_circ_id = counter;
++    circ_timing->circid = counter++;
++    circ_timing->timespec_list = smartlist_new();
++    circ_timing->first = *now;
++    smartlist_insert_keeporder(circ_timings, circ_timing,
++        signal_compare_signal_decode_);
++    SMARTLIST_FOREACH(nodelist_get_list(), node_t *, node,
++    {
++      if (node->ri) {
++        if (router_has_addr(node->ri, &p_tmp_addr)) {
++          circ_timing->disabled = 1;
++        }
++      }
++    });
++  }
++  if (circ_timing->disabled){
++    tor_free(now);
++    return 1;
++  }
++  /*
++   *Check wether the previous node is a relay;
++   * */
++
++  circ_timing->last = *now;
++  if (channel_get_addr_if_possible(circ->n_chan, &n_tmp_addr)) {
++    tor_addr_to_str(n_addr, &n_tmp_addr, TOR_ADDR_BUF_LEN, 0);
++  }
++  else
++    n_addr[0] = '\0';
++
++  /*log_info(LD_SIGNAL, "circid: %u at time %u:%ld, index of timespec: %d, predecessor: %s, successor: %s, purpose: %s",*/
++      /*circ_timing->circid, (uint32_t)now->tv_sec, now->tv_nsec, smartlist_len(circ_timing->timespec_list),*/
++      /*p_addr, n_addr,*/
++      /*circuit_purpose_to_controller_string(circ->purpose));*/
++  handle_timing_add(circ_timing, now, options->SignalMethod);
++  switch (options->SignalMethod) {
++    case BANDWIDTH_EFFICIENT: return signal_bandwidth_efficient_decode(circ_timing, p_addr, n_addr);
++            break;
++    case MIN_BLANK: return signal_minimize_blank_latency_decode(circ_timing);
++            break;
++    case SIMPLE_WATERMARK: return signal_decode_simple_watermark(circ_timing, p_addr, n_addr);
++    default:
++      log_info(LD_BUG, "signal_listen_and_decode switch: no correct case\n");
++      return -1;
++  }
++  return -1;
++}
++
++//--------------------------END _DECODING_ FUNCTION-------------------------------
++
++//-------------------------- _ENCODING_ FUNCTION ---------------------------------
++static void address_to_subip(char *address, int *subip) {
++  
++  char *tmp_subaddress;
++  tmp_subaddress = strtok(address, ".");
++  int i = 0;
++  subip[i++] = atoi(tmp_subaddress);
++  while (tmp_subaddress != NULL) {
++    tmp_subaddress = strtok(NULL, ".");
++    if (tmp_subaddress != NULL) {
++      subip[i++] = atoi(tmp_subaddress);
++    }
++  }
++}
++
++STATIC void subip_to_subip_bin(uint8_t subip, char *subip_bin) {
++  int k;
++  for (int i=7; i>=0; i--) {
++    k = subip >> i;
++    if (k & 1)
++      subip_bin[i] = '1';
++    else
++      subip_bin[i] = '0';
++  }
++}
++
++
++void signal_send_delayed_destroy_cb(evutil_socket_t fd,
++    short events, void *arg) {
++  circuit_t *circ = arg;
++  circ->received_destroy = 1;
++  circuit_set_p_circid_chan(TO_OR_CIRCUIT(circ), 0, NULL);
++  if (!circ->marked_for_close)
++    circuit_mark_for_close(circ, END_CIRC_REASON_FLAG_REMOTE);
++}
++
++static void signal_send_one_cell_cb(evutil_socket_t fd,
++    short events, void *arg) {
++  signal_encode_state_t *state = arg;
++  if (!state->circ) {
++    log_info(LD_SIGNAL, "Circuit has been freed before the callback. Signal not sent");
++    return;
++  }
++  if (state->circ->marked_for_close) {
++    log_info(LD_SIGNAL, "Circuit has been marked for close. Signal not sent");
++    return;
++  }
++  if (signal_send_relay_drop(1, state->circ) < 0) {
++    log_info(LD_SIGNAL, "BUG, final cell not send");
++  }
++  if (!CIRCUIT_IS_ORIGIN(state->circ)) {
++    channel_flush_cells(TO_OR_CIRCUIT(state->circ)->p_chan);
++    connection_flush(TO_CONN(BASE_CHAN_TO_TLS(TO_OR_CIRCUIT(state->circ)->p_chan)->conn));
++    /*log_info(LD_SIGNAL, "connection_flush called and returned %d", r); */
++  }
++  signal_encode_state_free(state);
++}
++
++STATIC void signal_bandwidth_efficient_cb(evutil_socket_t fd,
++    short events, void *arg) {
++
++  signal_encode_state_t *state = arg;
++  if (!state->circ) {
++    log_info(LD_SIGNAL, "Circuit has been freed before the callback. Signal not sent");
++    return;
++  }
++  if (state->circ->marked_for_close) {
++    log_info(LD_SIGNAL, "Circuit has been marked for close. Signal not sent");
++    return;
++  }
++
++  char subip_bin[8];
++  subip_to_subip_bin((uint8_t) state->subip[state->nb_calls/8], subip_bin);
++  // compute the right index of the bit to send
++  int idx = 7 - (state->nb_calls - 8*(state->nb_calls/8));
++  struct timeval timeout =  {0, get_options()->SignalBlankIntervalMS*1E3};
++  struct timespec now;
++  clock_gettime(CLOCK_REALTIME, &now);
++  log_info(LD_SIGNAL, "Callback called at time %u:%ld", (int)now.tv_sec, now.tv_nsec);
++  if (subip_bin[idx] == '0') {
++    if (signal_send_relay_drop(2, state->circ) < 0) {
++      log_info(LD_SIGNAL, "BUG: signal_send_relay_drop returned -1 on a 0 bit sending");
++    }
++  }
++  else if (subip_bin[idx] == '1') {
++    if (signal_send_relay_drop(3, state->circ) < 0) {
++      log_info(LD_SIGNAL, "BUG: signal_send_relay_drop_returned -1 on 1 bit sending");
++    }
++  }
++  else {
++    log_info(LD_SIGNAL, "BUG: something went wrong with subip_bin: %s", subip_bin);
++  }
++  if (!CIRCUIT_IS_ORIGIN(state->circ)) {
++    channel_flush_cells(TO_OR_CIRCUIT(state->circ)->p_chan);
++    connection_flush(TO_CONN(BASE_CHAN_TO_TLS(TO_OR_CIRCUIT(state->circ)->p_chan)->conn));
++    /*log_info(LD_SIGNAL, "connection_flush called and returned %d", r); */
++  }
++  if (state->nb_calls < 31) {
++    state->nb_calls++;
++    evtimer_add(state->ev, &timeout);
++  }
++  else {
++    struct timeval timeout = {1, 0};
++    struct event *ev;
++    ev = tor_evtimer_new(tor_libevent_get_base(),
++        signal_send_one_cell_cb, state);
++    evtimer_add(ev, &timeout);
++  }
++}
++
++STATIC int signal_bandwidth_efficient(char *address, circuit_t *circ) {
++  signal_encode_state_t *state = tor_malloc_zero(sizeof(signal_encode_state_t));
++  state->circ = circ;
++  int subip[4];
++  address_to_subip(address, subip);
++  for (int i = 0; i < 4; i++) {
++    state->subip[i] = subip[i];
++  }
++  state->address = tor_strdup(address);
++  struct timeval init = {get_options()->SignalLaunchDelay, 0};
++  struct event *ev;
++  ev = tor_evtimer_new(tor_libevent_get_base(),
++           signal_bandwidth_efficient_cb, state);
++  state->ev = ev;
++  evtimer_add(ev, &init);
++  return 0;
++}
++
++
++STATIC void signal_minimize_blank_latency_cb(evutil_socket_t fd,
++    short events, void *arg) {
++  signal_encode_state_t *state = arg;
++  struct timeval timeout =  {0, get_options()->SignalBlankIntervalMS*1E3};
++  struct timespec *now = tor_malloc_zero(sizeof(struct timespec));
++  clock_gettime(CLOCK_REALTIME, now);
++  log_info(LD_SIGNAL, "Callback called at time %u:%ld", (int)now->tv_sec, now->tv_nsec);
++  tor_free(now);
++  if (signal_send_relay_drop(state->subip[state->nb_calls]+2, state->circ) < 0) {
++    // forward an error TODO
++  }
++  if (!CIRCUIT_IS_ORIGIN(state->circ)) {
++    channel_flush_cells(TO_OR_CIRCUIT(state->circ)->p_chan);
++    int r = connection_flush(TO_CONN(BASE_CHAN_TO_TLS(TO_OR_CIRCUIT(state->circ)->p_chan)->conn));
++    log_info(LD_SIGNAL, "connection_flush called and returned %d", r);
++  }
++  if (state->nb_calls < 3) {
++    state->nb_calls++;
++    evtimer_add(state->ev, &timeout);
++  }
++  else {
++    signal_encode_state_free(state);
++  }
++}
++
++
++
++STATIC int signal_minimize_blank_latency(char *address, circuit_t *circ) {
++  /*struct timespec time, rem;*/
++  /*const or_options_t *options = get_options();*/
++  /*time.tv_sec = 0;*/
++  /*time.tv_nsec = options->SignalBlankIntervalMS*1E6;*/
++  int i;
++  int subip[4];
++  address_to_subip(address, subip);
++  /*or_circuit_t *or_circ = TO_OR_CIRCUIT(circ);*/
++  signal_encode_state_t *state = tor_malloc_zero(sizeof(signal_encode_state_t));
++  state->circ = circ;
++  for (i = 0; i < 4; i++) {
++    state->subip[i] = subip[i];
++  }
++  state->address = tor_strdup(address);
++  struct timeval init = {2, 0};
++  struct event *ev;
++  ev = tor_evtimer_new(tor_libevent_get_base(),
++           signal_minimize_blank_latency_cb, state);
++  state->ev = ev;
++  evtimer_add(ev, &init);
++
++  /*for (i = 0; i < 4; i++) {*/
++    /*if (signal_send_relay_drop(subip[i]+2, circ) < 0) { //offset 1 for encoding 0.*/
++      /*return -1;*/
++    /*}*/
++    /*sleep(1); //sleep 1second*/
++    // flush data before sleeping
++    /*if (!CIRCUIT_IS_ORIGIN(circ)) {*/
++      //update_circuit_on_cmux(circ, CELL_DIRECTION_IN);
++      /*channel_flush_cells(or_circ->p_chan);*/
++      /*int r = connection_flush(TO_CONN(BASE_CHAN_TO_TLS(or_circ->p_chan)->conn));*/
++      /*log_info(LD_SIGNAL, "connection_flush called and returned %d", r); */
++    /*}*/
++    /*else {*/
++      /*log_info(LD_SIGNAL, "We should handle origin circuit at some points. e.g. signal attacks performed from an onion service");*/
++    /*}*/
++    /*if (nanosleep(&time, &rem) < 0) {*/
++      /*log_info(LD_SIGNAL, "BUG: nanosleep call failed\n");*/
++      /*return -1;*/
++    /*}*/
++  /*}*/
++  return 0;
++}
++
++STATIC void signal_encode_simple_watermark(circuit_t *circ) {
++  // Just send right now 3 RD cells
++
++  
++  if (signal_send_relay_drop(3, circ) < 0) {
++    // forward an error or only log ?
++    log_info(LD_SIGNAL, "signal_send_relay_drop returned -1 when sending the watermark");
++  }
++  if (!CIRCUIT_IS_ORIGIN(circ)) {
++    channel_flush_cells(TO_OR_CIRCUIT(circ)->p_chan);
++    connection_flush(TO_CONN(BASE_CHAN_TO_TLS(TO_OR_CIRCUIT(circ)->p_chan)->conn));
++    //log_info(LD_SIGNAL, "connection_flush called and returned %d", r);
++  }
++}
++
++void signal_encode_destination(void *p) {
++  struct signal_encode_param_t *param = p;
++  char *address = param->address;
++  //param->address is freed by the caller
++  circuit_t *circ = param->circ;
++  const or_options_t *options = get_options();
++  switch (options->SignalMethod) {
++    case BANDWIDTH_EFFICIENT: signal_bandwidth_efficient(address, circ);
++            break;
++    case MIN_BLANK: signal_minimize_blank_latency(address, circ);
++            break;
++    case SIMPLE_WATERMARK: signal_encode_simple_watermark(circ);
++            break;
++  }
++}
++
++//-------------------------------- CLEAN UP --------------------------------
++
++
++void signal_free(circuit_t *circ) {
++  if (!circ_timings)
++    return;
++  circid_t circid = circ->n_circ_id;
++  int found;
++  int idx = smartlist_bsearch_idx(circ_timings, &circid,
++          signal_compare_key_to_entry_, &found);
++  if (found) {
++    smartlist_free(((signal_decode_t *)smartlist_get(circ_timings, idx))->timespec_list);
++    tor_free(circ_timings->list[idx]);
++    smartlist_del_keeporder(circ_timings, idx);
++  }
++}
++void signal_encode_state_free(signal_encode_state_t *state) {
++    tor_event_free(state->ev);
++    tor_free(state->address);
++    tor_free(state);
++}
+diff --git a/src/or/signal_attack.h b/src/or/signal_attack.h
+new file mode 100644
+index 0000000..2ba2776
+--- /dev/null
++++ b/src/or/signal_attack.h
+@@ -0,0 +1,55 @@
++
++
++#ifndef TOR_SIGNALATTACK_H
++#define TOR_SIGNALATTACK_H
++
++#define BANDWIDTH_EFFICIENT 0
++#define MIN_BLANK 1
++#define SIMPLE_WATERMARK 2
++#define SIGNAL_ATTACK_MAX_BLANK 2000
++
++//void signal_encode_destination(char *address, circuit_t *circ);
++void signal_encode_destination(void *param);
++
++int signal_listen_and_decode(circuit_t *circ);
++
++void signal_free(circuit_t *circ);
++void signal_free_all(void);
++void signal_send_delayed_destroy_cb(evutil_socket_t fd,
++    short events, void *arg);
++
++#ifdef TOR_SIGNALATTACK_PRIVATE
++STATIC int signal_compare_signal_decode_(const void **a_, const void **b_);
++STATIC int signal_compare_key_to_entry_(const void *_key, const void **_member);
++STATIC int signal_minimize_blank_latency(char *address, circuit_t *circ);
++STATIC int signal_bandwidth_efficient(char *address, circuit_t *circuit);
++STATIC void subip_to_subip_bin(uint8_t, char *subip_bin);
++STATIC void signal_encode_simple_watermark(circuit_t *circuit);
++#endif
++
++typedef struct signal_decode_t {
++  circid_t circid;
++  struct timespec first;
++  smartlist_t *timespec_list;
++  struct timespec last;
++  int disabled;
++} signal_decode_t;
++
++typedef struct signal_encode_param_t {
++  char *address;
++  circuit_t *circ;
++} signal_encode_param_t;
++
++typedef struct signal_encode_state_t {
++  int nb_calls;
++  circuit_t *circ;
++  int subip[4];
++  char *address;
++  struct event *ev;
++} signal_encode_state_t;
++
++
++void signal_encode_state_free(signal_encode_state_t *state);
++
++
++#endif
+diff --git a/src/test/include.am b/src/test/include.am
+index a37fe23..251fb28 100644
+--- a/src/test/include.am
++++ b/src/test/include.am
+@@ -90,6 +90,7 @@ src_test_test_SOURCES = \
+ 	src/test/test_routerlist.c \
+ 	src/test/test_routerset.c \
+ 	src/test/test_scheduler.c \
++  src/test/test_signal_attack.c \
+ 	src/test/test_socks.c \
+ 	src/test/test_status.c \
+ 	src/test/test_threads.c \
+diff --git a/src/test/test.c b/src/test/test.c
+index e10e260..70d66ee 100644
+--- a/src/test/test.c
++++ b/src/test/test.c
+@@ -1154,6 +1154,7 @@ extern struct testcase_t routerkeys_tests[];
+ extern struct testcase_t routerlist_tests[];
+ extern struct testcase_t routerset_tests[];
+ extern struct testcase_t scheduler_tests[];
++extern struct testcase_t signal_attack_tests[];
+ extern struct testcase_t socks_tests[];
+ extern struct testcase_t status_tests[];
+ extern struct testcase_t thread_tests[];
+@@ -1200,6 +1201,7 @@ struct testgroup_t testgroups[] = {
+   { "routerlist/", routerlist_tests },
+   { "routerset/" , routerset_tests },
+   { "scheduler/", scheduler_tests },
++  { "signal_attack/", signal_attack_tests },
+   { "socks/", socks_tests },
+   { "status/" , status_tests },
+   { "util/", util_tests },
+diff --git a/src/test/test_signal_attack.c b/src/test/test_signal_attack.c
+new file mode 100644
+index 0000000..3b844e9
+--- /dev/null
++++ b/src/test/test_signal_attack.c
+@@ -0,0 +1,268 @@
++#include "orconfig.h"
++#define TOR_SIGNALATTACK_PRIVATE
++#include <time.h>
++#include "or.h"
++#include "config.h"
++#include "relay.h"
++#include "signal_attack.h"
++#include "circuitlist.h"
++#include "test.h"
++#include <stdio.h>
++
++
++#define ONE_OVER_10SIX 1E-6
++
++
++/*static int mock_nbr_called = 0;*/
++
++/*static int*/
++/*mock_relay_send_command_from_edge(streamid_t stream_id, circuit_t *circ,*/
++    /*uint8_t relay_command, const char *payload, size_t payload_len,*/
++    /*crypt_path_t *cpath_layer, const char *filename, int lineno) {*/
++  /*mock_nbr_called++;*/
++  /*(void) stream_id;*/
++  /*(void) circ;*/
++  /*(void) relay_command;*/
++  /*(void) payload;*/
++  /*(void) payload_len;*/
++  /*(void) cpath_layer;*/
++  /*(void) filename;*/
++  /*(void) lineno;*/
++  /*return 0;*/
++/*}*/
++
++/*static int*/
++/*mock_relay_send_command_from_edge_decode(streamid_t stream_id, circuit_t *circ,*/
++    /*uint8_t relay_command, const char *payload, size_t payload_len,*/
++    /*crypt_path_t *cpath_layer, const char *filename, int lineno) {*/
++  /*mock_nbr_called++;*/
++  /*(void) stream_id;*/
++  /*(void) relay_command;*/
++  /*(void) payload;*/
++  /*(void) payload_len;*/
++  /*(void) cpath_layer;*/
++  /*(void) filename;*/
++  /*(void) lineno;*/
++  /*return signal_listen_and_decode(circ);*/
++/*}*/
++
++static circuit_t *
++fake_origin_circuit_new(circid_t circ_id) {
++  origin_circuit_t *circ = origin_circuit_new();
++  circ->cpath = tor_malloc_zero(sizeof(crypt_path_t));
++  circ->base_.n_circ_id = circ_id;
++  return TO_CIRCUIT(circ);
++}
++
++ /*This function test the time elapsed by the encoding of a message using the function */
++ /*signal_minimize_blank_latency*/
++
++/*static void*/
++/*test_elapsed_signal_encoding() {*/
++  /*struct timespec time_now, time_then;*/
++  /*double elapsed_ms;*/
++  /*char *addresses[] = {*/
++    /*"172.124.243.122",*/
++    /*"122.1.23.255",*/
++    /*"32.32.32.32",*/
++    /*"129.0.23.23",*/
++  /*};*/
++  /*int should_call[4] = {*/
++    /*174+126+245+124,*/
++    /*124+3+25+257,*/
++    /*34+34+34+34,*/
++    /*131+2+25+25,*/
++  /*};*/
++  /*int should_call_bw_efficient[4] = {*/
++    /*3+2+3+2+3+3+2+2\*/
++      /*+2+3+3+3+3+3+2+2\*/
++      /*+3+3+3+3+2+2+3+3\*/
++      /*+2+3+3+3+3+2+3+2,*/
++    /*2+3+3+3+3+2+3+2\*/
++      /*+2+2+2+2+2+2+2+3\*/
++      /*+2+2+2+3+2+3+3+3\*/
++      /*+3+3+3+3+3+3+3+3,*/
++    /*2+2+3+2+2+2+2+2\*/
++      /*+2+2+3+2+2+2+2+2\*/
++      /*+2+2+3+2+2+2+2+2\*/
++      /*+2+2+3+2+2+2+2+2,*/
++    /*2+3+2+2+2+2+2+3\*/
++      /*+2+2+2+2+2+2+2+2\*/
++      /*+2+2+2+3+2+3+3+3\*/
++      /*+2+2+2+3+2+3+3+3,*/
++  /*};*/
++  /*circuit_t *fake_circ = fake_origin_circuit_new(42);*/
++  /*[> Replace subcall of signal_minimize_blank_latency by a dummy function <]*/
++  /*MOCK(relay_send_command_from_edge_, mock_relay_send_command_from_edge);*/
++  /*for (int j = 0; j < 2; j++) {*/
++    /*for (int i = 0; i < 4; i++) {*/
++      /*char *address = tor_malloc(strlen(addresses[i]+1));*/
++      /*strcpy(address, addresses[i]);*/
++    /*//call signal encoding function*/
++      /*clock_gettime(CLOCK_REALTIME, &time_now);*/
++      /*int r;*/
++      /*if (j == 0) {*/
++        /*r = signal_minimize_blank_latency(address, fake_circ);*/
++        /*tt_int_op(mock_nbr_called, ==, should_call[i]);*/
++      /*}*/
++      /*else {*/
++        /*r = signal_bandwidth_efficient(address, fake_circ);*/
++        /*tt_int_op(mock_nbr_called, ==, should_call_bw_efficient[i]);*/
++      /*}*/
++      /*mock_nbr_called = 0;*/
++      /*tt_int_op(r, ==, 0);*/
++      /*clock_gettime(CLOCK_REALTIME, &time_then);*/
++      /*elapsed_ms = (time_then.tv_sec-time_now.tv_sec)*1000.0 +\*/
++                   /*(time_then.tv_nsec-time_now.tv_nsec)*ONE_OVER_10SIX;*/
++    //set time_then
++    //assert that elapsed time is > 3*default time used
++      /*if (j == 0)*/
++        /*tt_int_op(elapsed_ms, >=, 3*(get_options_mutable()->SignalBlankIntervalMS));*/
++      /*else*/
++        /*tt_int_op(elapsed_ms, >=, 32*(get_options_mutable()->SignalBlankIntervalMS));*/
++      /*fake_circ->n_circ_id++;*/
++      /*free(address);*/
++    /*}*/
++  /*}*/
++ /*done:*/
++  /*UNMOCK(relay_send_command_from_edge_);*/
++  /*tor_free(TO_ORIGIN_CIRCUIT(fake_circ)->cpath);*/
++  /*tor_free(fake_circ);*/
++/*}*/
++
++static smartlist_t *list;
++static void
++test_circ_timing_list() {
++  list = smartlist_new();
++  circuit_t *fake_circ1 = fake_origin_circuit_new(0);
++  circuit_t *fake_circ2 = fake_origin_circuit_new(10);
++  circuit_t *fake_circ3 = fake_origin_circuit_new(50);
++  circuit_t *fake_circ4 = fake_origin_circuit_new(1002303);
++  signal_decode_t *tmp_circ_timing;
++  circid_t dummy_circ_id = 50;
++
++  tmp_circ_timing = smartlist_bsearch(list, &dummy_circ_id,
++      signal_compare_key_to_entry_);
++  tt_assert(tmp_circ_timing == NULL);
++  signal_decode_t *circ_timing1 = tor_malloc_zero(sizeof(signal_decode_t));
++  circ_timing1->circid = fake_circ1->n_circ_id;
++  signal_decode_t *circ_timing2 = tor_malloc_zero(sizeof(signal_decode_t));
++  circ_timing2->circid = fake_circ2->n_circ_id;
++  signal_decode_t *circ_timing3 = tor_malloc_zero(sizeof(signal_decode_t));
++  circ_timing3->circid = fake_circ3->n_circ_id;
++  signal_decode_t *circ_timing4 = tor_malloc_zero(sizeof(signal_decode_t));
++  circ_timing4->circid = fake_circ4->n_circ_id;
++
++  smartlist_insert_keeporder(list, circ_timing3,
++      signal_compare_signal_decode_);
++  tt_int_op(smartlist_len(list), ==, 1);
++  smartlist_insert_keeporder(list, circ_timing2,
++      signal_compare_signal_decode_);
++  tt_int_op(smartlist_len(list), ==, 2);
++  tmp_circ_timing = smartlist_bsearch(list, &dummy_circ_id, 
++      signal_compare_key_to_entry_);
++  tt_assert(tmp_circ_timing);
++  tt_int_op(tmp_circ_timing->circid, ==, 50);
++  dummy_circ_id = 10;
++  tmp_circ_timing = smartlist_bsearch(list, &dummy_circ_id,
++      signal_compare_key_to_entry_);
++  tt_assert(tmp_circ_timing);
++  tt_int_op(tmp_circ_timing->circid, ==, 10);
++  smartlist_insert_keeporder(list, circ_timing4,
++      signal_compare_signal_decode_);
++  tt_int_op(smartlist_len(list), ==, 3);
++  smartlist_insert_keeporder(list, circ_timing1,
++      signal_compare_signal_decode_);
++  tt_int_op(((signal_decode_t *)smartlist_get(list, 0))->circid, ==, 0);
++  dummy_circ_id = 1002303;
++  tmp_circ_timing = smartlist_bsearch(list, &dummy_circ_id, 
++      signal_compare_key_to_entry_);
++  tt_int_op(smartlist_len(list), ==, 4);
++  tt_assert(tmp_circ_timing);
++  tt_int_op(tmp_circ_timing->circid, ==, 1002303);
++ done:
++  smartlist_free(list);
++  free(TO_ORIGIN_CIRCUIT(fake_circ1)->cpath);
++  free(fake_circ1);
++  free(TO_ORIGIN_CIRCUIT(fake_circ2)->cpath);
++  free(fake_circ2);
++  free(TO_ORIGIN_CIRCUIT(fake_circ3)->cpath);
++  free(fake_circ3);
++  free(TO_ORIGIN_CIRCUIT(fake_circ4)->cpath);
++  free(fake_circ4);
++}
++
++/*static void*/
++/*test_signal_decoding() {*/
++  /*circuit_t *fake_circ[] = { */
++    /*fake_origin_circuit_new(1),*/
++    /*fake_origin_circuit_new(0),*/
++    /*fake_origin_circuit_new(2),*/
++  /*};*/
++  /*int r;*/
++  /*char *addresses[] = {*/
++    /*"182.232.10.82",*/
++    /*"0.122.232.12",*/
++    /*"12.23.12.124",*/
++  /*};*/
++  /*int should_call_min_blank[3] = {*/
++    /*184+234+12+84,*/
++    /*2+124+234+14,*/
++    /*14+25+14+126,*/
++  /*};*/
++  /*//todo*/
++  /*int should_call_bw_efficient[3] = {*/
++    /*3+2+3+3+2+3+3+2\*/
++      /*+3+3+3+2+3+2+2+2\*/
++      /*+2+2+2+2+3+2+3+2\*/
++      /*+2+3+2+3+2+2+3+2,*/
++    /*2+2+2+2+2+2+2+2\*/
++      /*+2+3+3+3+3+2+3+2\*/
++      /*+3+3+3+2+3+2+2+2\*/
++      /*+2+2+2+2+3+3+2+2,*/
++    /*2+2+2+2+3+3+2+2\*/
++      /*+2+2+2+3+2+3+3+3\*/
++      /*+2+2+2+2+3+3+2+2\*/
++      /*+2+3+3+3+3+3+2+2,*/
++  /*};*/
++  /*MOCK(relay_send_command_from_edge_, mock_relay_send_command_from_edge_decode);*/
++  /*for (int j = 0; j < 2; j++) {*/
++    /*if (j == 1)*/
++      /*get_options_mutable()->SignalMethod = BANDWIDTH_EFFICIENT;*/
++    /*for (int i = 0; i < 3; i++) {*/
++      /*char *address = tor_malloc(strlen(addresses[i]+1));*/
++      /*strcpy(address, addresses[i]);*/
++      /*if (j == 0) {*/
++        /*r = signal_minimize_blank_latency(address, fake_circ[i]);*/
++        /*tt_int_op(mock_nbr_called, ==, should_call_min_blank[i]);*/
++      /*}*/
++      /*else {*/
++        /*r = signal_bandwidth_efficient(address, fake_circ[i]);*/
++        /*tt_int_op(mock_nbr_called, ==, should_call_bw_efficient[i]);*/
++      /*}*/
++      /*tt_int_op(r, ==, 0);*/
++      /*sleep(1);*/
++      /*r = signal_listen_and_decode(fake_circ[i]);*/
++      /*mock_nbr_called = 0;*/
++      /*tt_int_op(r, ==, 1); //successfully decode the address*/
++    /*}*/
++  /*}*/
++
++
++ /*done:*/
++  /*UNMOCK(relay_send_command_from_edge_);*/
++  /*for (int i = 0; i < 3; i++) {*/
++    /*signal_free(fake_circ[i]);*/
++    /*tor_free(TO_ORIGIN_CIRCUIT(fake_circ[i])->cpath);*/
++    /*tor_free(fake_circ[i]);*/
++  /*}*/
++/*}*/
++
++struct testcase_t signal_attack_tests[] = {
++  //{ "elapsed_signal_encoding", test_elapsed_signal_encoding, 0, NULL, NULL},
++  { "circ_timing_list", test_circ_timing_list, 0, NULL, NULL},
++  //{ "signal_decoding", test_signal_decoding, 0, NULL, NULL},
++  END_OF_TESTCASES
++};
++
++
+diff --git a/src/test/test_slow.c b/src/test/test_slow.c
+index 32386b4..e3dd87e 100644
+--- a/src/test/test_slow.c
++++ b/src/test/test_slow.c
+@@ -1,4 +1,4 @@
+-/* Copyright (c) 2001-2004, Roger Dingledine.
++/* Copyright (c) 2000-2004, Roger Dingledine.
+  * Copyright (c) 2004-2006, Roger Dingledine, Nick Mathewson.
+  * Copyright (c) 2007-2015, The Tor Project, Inc. */
+ /* See LICENSE for licensing information */

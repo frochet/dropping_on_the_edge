@@ -1,0 +1,26 @@
+ORPort 9111
+SocksPort 0
+DirPort 0
+ExitPolicy "accept *:80"
+ExitPolicy "reject *:*"
+ActivateSignalAttackWrite 1
+WatchAddress 91.198.174.192
+WatchAddress 114.134.80.162
+WatchAddress 172.217.17.110
+WatchAddress 46.28.209.62
+WatchAddress 179.60.195.36
+WatchAddress 98.139.183.24
+WatchAddress 151.101.1.140
+WatchAddress 103.23.108.107
+WatchAddress 172.217.17.99
+WatchAddress 54.239.26.128
+WatchAddress 111.13.101.208
+WatchAddress 188.72.202.36
+WatchAddress 104.244.42.129
+WatchAddress 148.251.23.152
+WatchAddress 183.79.135.206
+WatchAddress 65.55.118.92
+WatchAddress 34.206.253.12
+WatchAddress 11.0.1.198
+WatchAddress 11.0.1.199
+WatchAddress 212.58.246.78

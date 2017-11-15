@@ -1,0 +1,5 @@
+ORPort 9111
+DirPort 9112
+SocksPort 0
+SignalLogEachRelayedCellTiming 1
+ExitPolicy "accept *:*"
