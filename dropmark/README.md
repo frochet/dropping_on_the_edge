@@ -14,6 +14,9 @@ Onion Routing Protocols" and numerical results from the paper
 - Follow shadow-plugin-tor/README.md for Quick setup. Build with
   --tor-prefix towards the source code of the modified
   tor given in this directory
+- Careful, you may want to build tor with --openssl-prefix and
+  --libevent-prefix with stable of version from 2018. There is no
+guarantee it will build with you current dynamic library.
 - Download the appropriate decriptors on the CollectTor website
 
 
